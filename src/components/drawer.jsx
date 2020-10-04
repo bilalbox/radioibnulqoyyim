@@ -21,7 +21,7 @@ import Switch from "@material-ui/core/Switch"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 import styled from "styled-components"
 
-const drawerWidth = 150
+const drawerWidth = 180
 const StyledLink = styled(Link)`
   color: var(--textTitle);
   font-size: 1.4em;
