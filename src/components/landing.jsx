@@ -1,51 +1,49 @@
 import React from "react"
-import styled from "styled-components"
 import { GoRadioTower } from "react-icons/go"
+import { styled, withTheme } from "@material-ui/core/styles"
+
 import RadioPlayer from "./radioPlayer"
 
-const RadioTower = styled(GoRadioTower)`
-  color: var(--textTitle);
-  font-size: 5em;
-  @media (max-width: 800px) {
-    font-size: 3em;
-  }
-`
 
-const Container = styled.div`
-  padding: 0 4em;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
-  @media (max-width: 800px) {
-    padding: 0em 2em;
-  }
-`
+const RadioTower = styled(GoRadioTower)(({
+  theme
+}) => ({
+  color: theme.palette.primary.main,
+  fontSize: theme.typography.h1,
+  width: "5em",
+  height: "5em",
+  }))
 
-const Body = styled.div`
-  height: auto;
-  min-height: 100%;
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: top;
-  position: relative;
-  text-align: center;
-  flex-direction: column;
-  }
+const Container = styled('div')({
+  padding: "0 4em",
+  display: "flex",
+  width: "100%",
+  alignItems: "center",
+  flexDirection: "column",
+  })
 
-  .page-wrap {
-    overflow: auto;
-  }
-`
+const Body = styled('div')({
+  height: "auto",
+  minHeight: "100%",
+  display: "flex",
+  flex: 1,
+  alignItems: "center",
+  justifyContent: "top",
+  position: "relative",
+  textAlign: "center",
+  flexDirection: "column",
+ })
 
-export default function Landing() {
+
+function Landing({ theme }) {
   return (
     <Body>
       <Container>
-        <RadioTower />
+          <RadioTower color={theme.palette.primary.main}/>
       </Container>
       <RadioPlayer />
     </Body>
   )
 }
+
+export default withTheme(Landing);

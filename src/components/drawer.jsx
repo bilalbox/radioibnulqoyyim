@@ -16,53 +16,39 @@ import {
   RiSunFill,
 } from "react-icons/ri"
 import { GoRadioTower } from "react-icons/go"
-import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import Switch from "@material-ui/core/Switch"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import styled from "styled-components"
+import { styled, makeStyles, useTheme } from "@material-ui/core/styles"
+import AppContext from "./appContext"
 
-const drawerWidth = 180
-const StyledLink = styled(Link)`
-  color: var(--textTitle);
-  font-size: 1.4em;
-  text-left: center;
-  text-decoration: none;
-  text-align: left;
-  padding: 1;
-
-  &:hover {
-    color: var(--hover);
-  }
-`
-
-const TitleBar = styled.h2`
-  color: var(--textTitle);
-  font-size: 1.4em;
-  text-align: center;
-  padding: 1;
-`
-
-const MyDrawer = styled(Drawer)`
-  .MuiDrawer-paper {
-    background-color: var(--bg);
-  }
-`
+const drawerWidth = 150
+const StyledLink = styled(Link)(({
+  theme
+}) => ({
+  color: theme.palette.primary.contrastText,
+  fontSize: "1.2em",
+  textDecoration: 'none',
+  padding: 2,
+  }))
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // necessary for content to be below app bar
+  root: {
+    display: "flex",
+  },
   toolbar: theme.mixins.toolbar,
+  titleBar: {
+    color: theme.palette.primary.contrastText,
+    paddingTop: "1em",
+  },
   drawerPaper: {
     width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+    backgroundColor: theme.palette.primary.dark,
   },
 }))
 
@@ -70,6 +56,7 @@ function ResponsiveDrawer(props) {
   const { window } = props
   const classes = useStyles()
   const theme = useTheme()
+  const appContext = React.useContext(AppContext)
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -104,23 +91,15 @@ function ResponsiveDrawer(props) {
         <ListItem button key="darkMode" style={{ justifyContent: "center" }}>
           <div>
             <RiSunFill />
-            <ThemeToggler>
-              {({ theme, toggleTheme }) => (
-                <label>
                   <Switch
-                    checked={theme === "dark"}
+                    checked={appContext.darkMode}
                     label="Dark Mode"
                     size="small"
                     color="primary"
-                    onChange={(e) =>
-                      toggleTheme(e.target.checked ? "dark" : "light")
-                    }
+                    onChange={() => appContext.setDarkMode(!appContext.darkMode)}
                     name="darkMode"
-                    inputProps={{ "aria-label": "primary checkbox" }}
+                    inputProps={{ "aria-label": "primary switch" }}
                   />
-                </label>
-              )}
-            </ThemeToggler>
             <RiMoonFill />
           </div>
         </ListItem>
@@ -158,11 +137,11 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <TitleBar>{siteMetadata.title}</TitleBar>
+          <h2 className={classes.titleBar}>{siteMetadata.title}</h2>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="menu">
-        <MyDrawer
+        <Drawer
           container={container}
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
@@ -176,7 +155,7 @@ function ResponsiveDrawer(props) {
           }}
         >
           {drawer}
-        </MyDrawer>
+        </Drawer>
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />

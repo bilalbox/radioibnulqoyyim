@@ -1,54 +1,44 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
+import axios from "axios"
 import Fab from "@material-ui/core/Fab"
 import PlayArrowIcon from "@material-ui/icons/PlayArrow"
 import AudioSpectrum from "react-audio-spectrum"
 import Pause from "@material-ui/icons/Pause"
-import styled from "styled-components"
+import { styled, useTheme } from "@material-ui/core/styles"
+import Typography from '@material-ui/core/Typography'
+
+import AppContext from './appContext'
 import cfg from "../utils/config"
 
-const Wrapper = styled.div`
-  margin: 1em;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg);
-  justify-contents: "center";
-  align-items: "center";
-  align-self: "center";
-`
+const Wrapper = styled('div')({
+  margin: "1em",
+  display: "flex",
+  flexDirection: "column",
+  justifyContents: "center",
+  alignItems: "center",
+  alignSelf: "center",
+})
 
-const PlayFab = styled(Fab)`
-  margin-top: 0.5em;
-  background-color: var(--panel);
-  color: var(--textTitle);
-  text-align: center;
-
-  .MuiFab-extended {
-    background-color: var(--panel);
-  }
-`
-
-const Visualizer = styled(AudioSpectrum)`
-  margin-bottom: 1em;
-`
-
-const TrackName = styled.h6`
-  margin-top: 0.5em;
-  color: var(--textTitle);
-`
+const Visualizer = styled(AudioSpectrum)({
+  marginBottom: "1em",
+})
 
 export default function RadioPlayer() {
-  const [trackInfo, setTrackInfo] = useState("")
-  const [playing, setPlayingStatus] = useState(false)
-
-  useEffect(() => {
-    fetch(cfg.urls.currentTrackInfo, {
-      headers: new Headers({
-        origin: "anonymous",
-      }),
-    })
-      .then((response) => response.text())
-      .then((data) => setTrackInfo(data))
+  const theme = useTheme()
+  const appContext = React.useContext(AppContext)
+  const [trackInfo, setTrackInfo] = React.useState("")
+  const [playing, setPlayingStatus] = React.useState(false)
+  
+  let source = axios.CancelToken.source()
+  React.useEffect(() => {
+    axios.get(
+        cfg.urls.currentTrackInfo,
+        {cancelToken: source.token}
+      ).then((response) => setTrackInfo(response.data))
+      .catch(error => console.log(error))
+    return () => source.cancel("Cancelled request to shoutcast track info service")
   }, [])
+
   const playPause = () => {
     const audioEl = document.getElementsByClassName("audio-element")[0]
     if (audioEl.paused) {
@@ -60,29 +50,16 @@ export default function RadioPlayer() {
     }
   }
 
-  function PlayButton(props) {
+  function MediaButton(status) {
     return (
-      <PlayFab variant="extended" aria-label="play" onClick={() => playPause()}>
-        <PlayArrowIcon />
-        Play
-      </PlayFab>
+      <Fab color="primary" aria-label={status ? "pause" : "play"} onClick={() => playPause()}>
+      {!status && <PlayArrowIcon />}
+      {status && <Pause />}
+      </Fab>
     )
   }
 
-  function PauseButton(props) {
-    return (
-      <PlayFab
-        variant="extended"
-        aria-label="pause"
-        onClick={() => playPause()}
-      >
-        <Pause />
-        Pause
-      </PlayFab>
-    )
-  }
-
-  const [capColor, meterColor1, meterColor2] = ["#F24333", "#777", "#FFF"]
+  const [capColor, meterColor1, meterColor2] = [theme.palette.primary.main, "#777", "#FFF"]
   return (
     <Wrapper>
       <div>
@@ -109,11 +86,8 @@ export default function RadioPlayer() {
           gap={1}
         />
       </div>
-      <div>
-        {playing && <PauseButton />}
-        {!playing && <PlayButton />}
-      </div>
-      <TrackName>{trackInfo}</TrackName>
+        <MediaButton playing={playing} />
+      <Typography variant="h6" color="primary">{trackInfo}</Typography>
     </Wrapper>
   )
 }

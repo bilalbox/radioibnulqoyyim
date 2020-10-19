@@ -6,6 +6,21 @@ const cfg = {
     mainSite: "https://raihsurga.com",
     podcast: "https://anchor.fm/radioibnulqoyyim",
     radio: "https://ssg.streamingmurah.com:8286/stream",
+    radio1: {
+      trackInfo:
+      "https://cors-anywhere.herokuapp.com/https://ssg.streamingmurah.com:8286/currentsong?sid=1",
+      audio: "https://ssg.streamingmurah.com:8286/stream",
+    },
+    radio2: {
+      trackInfo:
+      "https://cors-anywhere.herokuapp.com/https://ssg.streamingmurah.com:8286/currentsong?sid=1",
+      audio: "https://ssg.streamingmurah.com:8286/stream",
+    },
+    radio3: {
+      trackInfo:
+      "https://cors-anywhere.herokuapp.com/https://ssg.streamingmurah.com:8286/currentsong?sid=1",
+      audio: "https://ssg.streamingmurah.com:8286/stream",
+    },
     rss: "https://anchor.fm/s/3770c8bc/podcast/rss",
     telegram: "https://t.me/AudioThalabIlmuSyar_i",
     youtube: "https://www.youtube.com/raihsurga",

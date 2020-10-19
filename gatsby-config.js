@@ -29,8 +29,6 @@ module.exports = {
         name: `Radio IQ`,
         short_name: `Radio IQ`,
         start_url: `/`,
-        background_color: `#0f111a`,
-        theme_color: `#00BFFF`,
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
         icon_options: { purpose: `any maskable` },
@@ -42,14 +40,6 @@ module.exports = {
         stylesProvider: {
           injectFirst: true,
         },
-      },
-    },
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-dark-mode`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
       },
     },
     `gatsby-plugin-sitemap`,

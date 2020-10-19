@@ -1,66 +1,68 @@
 import React from "react"
 import AudioPlayer from "react-h5-audio-player"
 import { Paper } from "@material-ui/core"
-import styled from "styled-components"
+import { styled } from "@material-ui/core/styles"
 import "react-h5-audio-player/lib/styles.css"
 
-const Player = styled(AudioPlayer)`
-  width: auto;
-  display: flex;
-  height: auto;
-  margin-bottom: 2em;
-  background-color: var(--panel);
-  color: var(--textTitle);
-  text-align: center;
+const Player = styled(AudioPlayer)(({theme}) => ({
 
-  button {
-    background-color: var(--panel);
-    color: var(--textTitle);
-  }
+  width: "auto",
+  display: "flex",
+  height: "auto",
+  marginBottom: "2em",
+  backgroundColor: "var(--panel)",
+  color: "var(--textTitle)",
+  textAlign: "center",
 
-  .rhap_header {
-    background-color: var(--panel);
-  }
+  button: {
+    backgroundColor: "var(--panel)",
+    color: "var(--textTitle)",
+  },
 
-  .rhap_controls-section {
-    background-color: var(--panel);
-  }
+  ".rhap_header": {
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  .rhap_progress-section {
-    background-color: var(--panel);
-  }
+  ".rhap_controls-section": {
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  .rhap_progress-container {
-    background-color: var(--panel);
-  }
+  ".rhap_progress-section": {
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  .rhap_progress-bar {
-    background-color: var(--panel);
-    color: var(--textLight);
-  }
+  ".rhap_progress-container": {
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  .rhap_progress-indicator {
-    background-color: var(--textTitle);
-  }
+  ".rhap_progress-bar": {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.light,
+  },
 
-  .rhap_main {
-    background-color: var(--panel);
-  }
+  ".rhap_progress-indicator": {
+    backgroundColor: theme.palette.primary.main,
+  },
 
-  .rhap_main-controls {
-    background-color: var(--panel);
-  }
+  ".rhap_main": {
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  .rhap_current-time {
-    background-color: var(--panel);
-    color: var(--textLight);
-  }
+  ".rhap_main-controls": {
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  .rhap_total-time {
-    background-color: var(--panel);
-    color: var(--textLight);
-  }
-`
+  ".rhap_current-time": {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.light,
+  },
+
+  ".rhap_total-time": {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.light,
+  },
+}))
+
 
 export default function PodcastPlayer({ title, audioUrl }) {
   return (

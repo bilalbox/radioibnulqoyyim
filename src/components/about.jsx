@@ -1,5 +1,4 @@
 import React from "react"
-import styled from "styled-components"
 import {
   IoMdInformationCircle,
   IoMdMail,
@@ -7,64 +6,62 @@ import {
   IoMdMic,
 } from "react-icons/io"
 import { FaTelegram } from "react-icons/fa"
+import { styled } from "@material-ui/core/styles"
+import Typography from '@material-ui/core/Typography'
+
 import cfg from "../utils/config"
 
-const IconLink = styled.a`
-  color: var(--textTitle);
-  font-size: calc(1.2em + 1vw);
-  text-left: center;
-  text-decoration: none;
-  margin: 0.5rem;
-
-  &:hover {
-    color: var(--hover);
+const IconLink = styled('a')(({theme}) => ({
+  color: theme.palette.primary.main,
+  fontSize: "calc(1.2em + 1vw)",
+  textLeft: "center",
+  textDecoration: "none",
+  margin: "0.5rem",
+  '&:hover': {
+    color: theme.palette.primary.light
   }
-`
-const Container = styled.div`
-  padding: 2em 6em;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
-  @media (max-width: 800px) {
-    padding: 1em 2em;
+}))
+
+const Container = styled('div')({
+  padding: "2em 6em",
+  display: "flex",
+  width: "100%",
+  alignItems: "center",
+  flexDirection: "column",
+  "@media (max-width: 800px)": {
+    padding: "1em 2em"
   }
-`
+})
 
-const Links = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  margin: 1em 0;
-  text-align: center
-  }
-`
+const Links = styled('div')({
+  display: "flex",
+  flex: 1,
+  flexDirection: "row",
+  margin: "1em 0",
+  textAlign: "center",
+  })
 
-const Footer = styled.footer`
-  padding: 2em;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-`
 
-const FooterText = styled.p`
-  color: var(--textNormal);
-  font-weight: 100;
-  text-align: center;
-  width: 100%;
-`
+const Footer = styled("footer")({
+  padding: "2em",
+  display: "flex",
+  width: "100%",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "absolute",
+  bottom: 0,
+})
+
 
 export default function About() {
   return (
     <>
       <Container>
-        <p>
+        <Typography color="primary" variant="body1">
           Ini adalah aplikasi web untuk Radio Ibnul Qoyyim Balikpapan Kalimantan
           Timur - Indonesia. Untuk informasi lebih lanjut, kunjungi website atau
           sosial media kami:
-        </p>
+        </Typography>
         <Links>
           <IconLink href={cfg.urls.mainSite}>
             <IoMdInformationCircle />
@@ -84,7 +81,7 @@ export default function About() {
         </Links>
       </Container>
       <Footer>
-        <FooterText>© {new Date().getFullYear()} Radio Ibnul Qoyyim</FooterText>
+        <Typography color="primary" variant="body2">© {new Date().getFullYear()} Radio Ibnul Qoyyim</Typography>
       </Footer>
     </>
   )

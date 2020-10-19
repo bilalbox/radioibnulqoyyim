@@ -10,8 +10,4 @@ Built with the following technologies:
 
 [![Built with Gatsby](https://img.shields.io/badge/built%20with-gatsby-%23663399)](https://www.gatsbyjs.org/)
 
-[![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
-
-[![Material UI Components](https://img.shields.io/badge/MUI-Material%20UI-purple)](https://material-ui.com/)
-
-[![Typography JS](https://img.shields.io/badge/Typography%20JS-gold)](https://kyleamathews.github.io/typography.js/)
+[![Material UI](https://img.shields.io/badge/MUI-Material%20UI-purple)](https://material-ui.com/)
