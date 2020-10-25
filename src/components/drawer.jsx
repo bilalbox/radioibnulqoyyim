@@ -1,33 +1,31 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import AppBar from "@material-ui/core/AppBar"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import Divider from "@material-ui/core/Divider"
-import Drawer from "@material-ui/core/Drawer"
-import IconButton from "@material-ui/core/IconButton"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import MenuIcon from "@material-ui/icons/Menu"
-import Toolbar from "@material-ui/core/Toolbar"
+import React from 'react'
+import { Link, useStaticQuery, graphql } from 'gatsby'
+import AppBar from '@material-ui/core/AppBar'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Divider from '@material-ui/core/Divider'
+import Drawer from '@material-ui/core/Drawer'
+import IconButton from '@material-ui/core/IconButton'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import MenuIcon from '@material-ui/icons/Menu'
+import Toolbar from '@material-ui/core/Toolbar'
 import {
   RiRecordMailFill,
   RiInformationFill,
   RiMoonFill,
   RiSunFill,
-} from "react-icons/ri"
-import { GoRadioTower } from "react-icons/go"
-import Switch from "@material-ui/core/Switch"
-import { styled, makeStyles, useTheme } from "@material-ui/core/styles"
+} from 'react-icons/ri'
+import { GoRadioTower } from 'react-icons/go'
+import Switch from '@material-ui/core/Switch'
+import { styled, makeStyles, useTheme } from '@material-ui/core/styles'
 
 const drawerWidth = 150
-const StyledLink = styled(Link)(({
-  theme
-}) => ({
+const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
-  fontSize: "1.2em",
+  fontSize: '1.2em',
   textDecoration: 'none',
   padding: 2,
-  }))
+}))
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -38,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   root: {
-    display: "flex",
+    display: 'flex',
   },
   toolbar: theme.mixins.toolbar,
   titleBar: {
     color: theme.palette.primary.contrastText,
-    paddingTop: "1em",
+    paddingTop: '1em',
   },
   drawerPaper: {
     width: drawerWidth,
@@ -79,18 +77,18 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
       </List>
       <Divider />
       <List>
-        <ListItem button key="darkMode" style={{ justifyContent: "center" }}>
+        <ListItem button key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
             <RiSunFill />
-                  <Switch
-                    checked={darkMode}
-                    label="Dark Mode"
-                    size="small"
-                    color="primary"
-                    onChange={() => toggleDarkMode()}
-                    name="darkMode"
-                    inputProps={{ "aria-label": "primary switch" }}
-                  />
+            <Switch
+              checked={darkMode}
+              label="Dark Mode"
+              size="small"
+              color="primary"
+              onChange={() => toggleDarkMode()}
+              name="darkMode"
+              inputProps={{ 'aria-label': 'primary switch' }}
+            />
             <RiMoonFill />
           </div>
         </ListItem>
@@ -135,7 +133,7 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
         <Drawer
           container={container}
           variant="temporary"
-          anchor={theme.direction === "rtl" ? "right" : "left"}
+          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
           open={mobileOpen}
           onClose={handleDrawerToggle}
           classes={{

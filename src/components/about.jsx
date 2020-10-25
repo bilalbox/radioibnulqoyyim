@@ -1,57 +1,55 @@
-import React from "react"
+import React from 'react'
 import {
   IoMdInformationCircle,
   IoMdMail,
   IoLogoYoutube,
   IoMdMic,
-} from "react-icons/io"
-import { FaTelegram } from "react-icons/fa"
-import { styled } from "@material-ui/core/styles"
+} from 'react-icons/io'
+import { FaTelegram } from 'react-icons/fa'
+import { styled } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
-import cfg from "../utils/config"
+import cfg from '../utils/config'
 
-const IconLink = styled('a')(({theme}) => ({
+const IconLink = styled('a')(({ theme }) => ({
   color: theme.palette.primary.main,
-  fontSize: "calc(1.2em + 1vw)",
-  textLeft: "center",
-  textDecoration: "none",
-  margin: "0.5rem",
+  fontSize: 'calc(1.2em + 1vw)',
+  textLeft: 'center',
+  textDecoration: 'none',
+  margin: '0.5rem',
   '&:hover': {
-    color: theme.palette.primary.light
-  }
+    color: theme.palette.primary.light,
+  },
 }))
 
 const Container = styled('div')({
-  padding: "2em 6em",
-  display: "flex",
-  width: "100%",
-  alignItems: "center",
-  flexDirection: "column",
-  "@media (max-width: 800px)": {
-    padding: "1em 2em"
-  }
+  padding: '2em 6em',
+  display: 'flex',
+  width: '100%',
+  alignItems: 'center',
+  flexDirection: 'column',
+  '@media (max-width: 800px)': {
+    padding: '1em 2em',
+  },
 })
 
 const Links = styled('div')({
-  display: "flex",
+  display: 'flex',
   flex: 1,
-  flexDirection: "row",
-  margin: "1em 0",
-  textAlign: "center",
-  })
-
-
-const Footer = styled("footer")({
-  padding: "2em",
-  display: "flex",
-  width: "100%",
-  alignItems: "center",
-  justifyContent: "center",
-  position: "absolute",
-  bottom: 0,
+  flexDirection: 'row',
+  margin: '1em 0',
+  textAlign: 'center',
 })
 
+const Footer = styled('footer')({
+  padding: '2em',
+  display: 'flex',
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'absolute',
+  bottom: 0,
+})
 
 export default function About() {
   return (
@@ -81,7 +79,9 @@ export default function About() {
         </Links>
       </Container>
       <Footer>
-        <Typography color="primary" variant="body2">© {new Date().getFullYear()} Radio Ibnul Qoyyim</Typography>
+        <Typography color="primary" variant="body2">
+          © {new Date().getFullYear()} Radio Ibnul Qoyyim
+        </Typography>
       </Footer>
     </>
   )

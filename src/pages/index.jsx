@@ -1,9 +1,9 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Index from "../components/audioPage"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Index from '../components/audioPage'
 
 export default function IndexPage() {
   const {
@@ -32,9 +32,9 @@ export default function IndexPage() {
   `)
 
   return (
-      <Layout>
-        <SEO title={siteMetadata.title} />
-        <Index />
-      </Layout>
+    <Layout>
+      <SEO title={siteMetadata.title} />
+      <Index />
+    </Layout>
   )
 }
