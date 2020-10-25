@@ -17,6 +17,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    `gatsby-image`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -38,7 +39,7 @@ module.exports = {
       resolve: `gatsby-plugin-material-ui`,
       options: {
         stylesProvider: {
-          injectFirst: true,
+          injectFirst: false,
         },
       },
     },

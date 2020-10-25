@@ -1,19 +1,14 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import AppContext from "../components/appContext"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import cfg from "../utils/config"
-import Index from "../components/landing"
+import Index from "../components/audioPage"
 
 export default function IndexPage() {
-  const [darkMode, setDarkMode ] = React.useState(useMediaQuery('(prefers-color-scheme: dark)'))
-  const [audioSource, setAudioSource] = React.useState("")
-  const [trackName, setTrackName] = React.useState("")
   const {
     site: { siteMetadata },
+    file: { childImageSharp },
   } = useStaticQuery(graphql`
     {
       site {
@@ -22,15 +17,24 @@ export default function IndexPage() {
           title
         }
       }
+      file(relativePath: { eq: "logo.png" }) {
+        childImageSharp {
+          fluid {
+            base64
+            aspectRatio
+            src
+            srcSet
+            sizes
+          }
+        }
+      }
     }
   `)
 
   return (
-    <AppContext.Provider value={{ darkMode, setDarkMode, audioSource, setAudioSource, trackName, setTrackName }}>
       <Layout>
         <SEO title={siteMetadata.title} />
         <Index />
       </Layout>
-    </AppContext.Provider>
   )
 }

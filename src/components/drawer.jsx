@@ -18,7 +18,6 @@ import {
 import { GoRadioTower } from "react-icons/go"
 import Switch from "@material-ui/core/Switch"
 import { styled, makeStyles, useTheme } from "@material-ui/core/styles"
-import AppContext from "./appContext"
 
 const drawerWidth = 150
 const StyledLink = styled(Link)(({
@@ -52,11 +51,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function ResponsiveDrawer(props) {
-  const { window } = props
-  const classes = useStyles()
+function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
   const theme = useTheme()
-  const appContext = React.useContext(AppContext)
+  const classes = useStyles()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -68,15 +65,9 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button key="radio">
-          <StyledLink id="radio" className="menu-item" to="/">
-            <GoRadioTower /> Radio
-          </StyledLink>
-        </ListItem>
-
-        <ListItem button key="archive">
-          <StyledLink id="archive" className="menu-item" to="/archive">
-            <RiRecordMailFill /> Arsip
+        <ListItem button key="home">
+          <StyledLink id="home" className="menu-item" to="/">
+            <GoRadioTower /> Home
           </StyledLink>
         </ListItem>
 
@@ -92,11 +83,11 @@ function ResponsiveDrawer(props) {
           <div>
             <RiSunFill />
                   <Switch
-                    checked={appContext.darkMode}
+                    checked={darkMode}
                     label="Dark Mode"
                     size="small"
                     color="primary"
-                    onChange={() => appContext.setDarkMode(!appContext.darkMode)}
+                    onChange={() => toggleDarkMode()}
                     name="darkMode"
                     inputProps={{ "aria-label": "primary switch" }}
                   />
