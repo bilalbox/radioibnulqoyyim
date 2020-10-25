@@ -9,6 +9,7 @@ import SkipPrevious from '@material-ui/icons/SkipPrevious'
 import Typography from '@material-ui/core/Typography'
 import Pause from '@material-ui/icons/Pause'
 import { makeStyles } from '@material-ui/core/styles'
+import { isUndefined } from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,14 +49,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AudioPlayer({
-  radioMode,
-  audioSource,
-  audioTitle,
-  audioImage,
-}) {
-  const classes = useStyles()
-  const useAudio = (aS) => {
+const useAudio = (aS) => {
+  if (typeof Audio !== 'undefined') {
     const [audio, setAudio] = React.useState(new Audio(aS))
     const [playing, setPlaying] = React.useState(false)
     const control = (command) => {
@@ -88,7 +83,16 @@ export default function AudioPlayer({
     }, [aS])
 
     return [playing, control]
-  }
+  } else return ['playing', () => console.log('gatsby hack')]
+}
+
+export default function AudioPlayer({
+  radioMode,
+  audioSource,
+  audioTitle,
+  audioImage,
+}) {
+  const classes = useStyles()
   let [playing, control] = useAudio(audioSource)
 
   return (
