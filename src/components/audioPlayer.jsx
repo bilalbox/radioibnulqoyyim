@@ -4,12 +4,12 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton'
-import SkipNext from '@material-ui/icons/SkipNext'
-import SkipPrevious from '@material-ui/icons/SkipPrevious'
+import FastForward from '@material-ui/icons/FastForward'
+import FastRewind from '@material-ui/icons/FastRewind'
+import Info from '@material-ui/icons/Info'
 import Typography from '@material-ui/core/Typography'
 import Pause from '@material-ui/icons/Pause'
 import { makeStyles } from '@material-ui/core/styles'
-import { isUndefined } from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '20vw',
-    '@media (max-width: 400px)': {
+    '@media (max-width: 1300px)': {
+      width: '50vw',
+    },
+    '@media (max-width: 500px)': {
       width: '100vw',
       backgroundColor: theme.palette.background.default,
     },
@@ -29,7 +32,11 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: '20vw',
     height: '20vw',
-    '@media (max-width: 400px)': {
+    '@media (max-width: 1300px)': {
+      width: '50vw',
+      height: '50vw',
+    },
+    '@media (max-width: 500px)': {
       width: '50vw',
       height: '50vw',
     },
@@ -37,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     height: 'auto',
-    '@media (max-width: 400px)': {
-      height: 'auto',
-    },
   },
   controls: {
     display: 'flex',
@@ -61,6 +65,12 @@ const useAudio = (aS) => {
         case 'rw':
           audio.currentTime -= 5
           break
+
+        // // TODO: Playback progress bar
+        // case 'get_current_time':
+        //   return audio.currentTime
+        // case 'get_duration':
+        //   return audio.duration
         default:
           setPlaying(!playing)
       }
@@ -86,14 +96,17 @@ const useAudio = (aS) => {
   } else return ['playing', () => console.log('gatsby hack')]
 }
 
-export default function AudioPlayer({
-  radioMode,
-  audioSource,
-  audioTitle,
-  audioImage,
-}) {
+export default function AudioPlayer({ audioSource, audioTitle, audioImage }) {
   const classes = useStyles()
   let [playing, control] = useAudio(audioSource)
+
+  // // TODO: Playback progress bar
+  // React.useEffect(() => {
+  //   const progressBar = setTimeout(() => {
+  //     setTimeLeft(calculateTimeLeft())
+  //   }, 1000)
+  //   return () => clearTimeout(timer)
+  // })
 
   return (
     <Card className={classes.root}>
@@ -107,25 +120,18 @@ export default function AudioPlayer({
           <Typography variant="h6">{audioTitle}</Typography>
         </CardContent>
         <div className={classes.controls}>
-          {radioMode && (
-            <IconButton aria-label={'rewind'} onClick={() => control('rw')}>
-              <SkipPrevious />
-            </IconButton>
-          )}
+          <IconButton aria-label={'rewind'} onClick={() => control('rw')}>
+            <FastRewind />
+          </IconButton>
           <IconButton
             aria-label={playing ? 'play' : 'pause'}
             onClick={() => control('pp')}
           >
             {playing ? <Pause /> : <PlayArrowIcon />}
           </IconButton>
-          {radioMode && (
-            <IconButton
-              aria-label={'fast-forward'}
-              onClick={() => control('ff')}
-            >
-              <SkipNext />
-            </IconButton>
-          )}
+          <IconButton aria-label={'fast-forward'} onClick={() => control('ff')}>
+            <FastForward />
+          </IconButton>
         </div>
       </div>
     </Card>
