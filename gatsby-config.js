@@ -15,14 +15,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-svgr-svgo`,
-    `gatsby-transformer-sharp`,
-    `gatsby-image`,
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        icon: `${__dirname}/src/images/logo.svg`,
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -34,14 +26,7 @@ module.exports = {
         icon_options: { purpose: `any maskable` },
       },
     },
-    {
-      resolve: `gatsby-plugin-material-ui`,
-      options: {
-        stylesProvider: {
-          injectFirst: false,
-        },
-      },
-    },
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-preact`,
     `gatsby-plugin-offline`,

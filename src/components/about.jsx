@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  IoMdInformationCircle,
-  IoMdMail,
-  IoLogoYoutube,
-  IoMdMic,
-} from 'react-icons/io'
-import { FaTelegram } from 'react-icons/fa'
+import { Email, Info, YouTube, Mic, Telegram } from '@material-ui/icons'
 import { styled } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
@@ -62,19 +56,19 @@ export default function About() {
         </Typography>
         <Links>
           <IconLink href={cfg.urls.mainSite}>
-            <IoMdInformationCircle />
+            <Info />
           </IconLink>
           <IconLink href={cfg.urls.youtube}>
-            <IoLogoYoutube />
+            <YouTube />
           </IconLink>
           <IconLink href={cfg.urls.podcast}>
-            <IoMdMic />
+            <Mic />
           </IconLink>
           <IconLink href={cfg.urls.telegram}>
-            <FaTelegram />
+            <Telegram />
           </IconLink>
           <IconLink href={cfg.urls.email}>
-            <IoMdMail />
+            <Email />
           </IconLink>
         </Links>
       </Container>

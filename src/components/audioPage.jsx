@@ -9,21 +9,9 @@ import {
   Avatar,
   ListItemText,
 } from '@material-ui/core'
-import RadioIcon from '@material-ui/icons/Radio'
-import ListIcon from '@material-ui/icons/List'
+import { Radio as RadioIcon, List as ListIcon } from '@material-ui/icons'
 import store from 'store/dist/store.modern'
 import { styled } from '@material-ui/core/styles'
-// import Tabs from '@material-ui/core/Tabs'
-// import Tab from '@material-ui/core/Tab'
-// import List from '@material-ui/core/List'
-// import ListItem from '@material-ui/core/ListItem'
-// import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-// import Avatar from '@material-ui/core/Avatar'
-// import ListItemText from '@material-ui/core/ListItemText'
-// import RadioIcon from '@material-ui/icons/Radio'
-// import ListIcon from '@material-ui/icons/List'
-// import store from 'store/dist/store.modern'
-// import { styled, useTheme } from '@material-ui/core/styles'
 
 import AudioContext from '../contexts/audioContext'
 import AudioPlayer from './audioPlayer'
@@ -61,32 +49,11 @@ export default function Archive() {
     setAudioTitle,
     audioImage,
     setAudioImage,
+    trackInfo,
+    setTrackInfo,
     darkMode,
   } = React.useContext(AudioContext)
   const [podcasts, setPodcasts] = React.useState([])
-
-  const stations = [
-    {
-      audioUrl: cfg.urls.radio1.audioUrl,
-      title: 'RADIO IQ - SALURAN 1',
-      imageUrl: cfg.urls.radio1.imageUrl[darkMode * 1],
-    },
-    {
-      audioUrl: cfg.urls.radio2.audioUrl,
-      title: 'RADIO IQ - SALURAN 2',
-      imageUrl: cfg.urls.radio2.imageUrl[darkMode * 1],
-    },
-    {
-      audioUrl: cfg.urls.radio3.audioUrl,
-      title: 'RADIO IQ - SALURAN 3',
-      imageUrl: cfg.urls.radio3.imageUrl[darkMode * 1],
-    },
-    {
-      audioUrl: cfg.urls.radio4.audioUrl,
-      title: 'RADIO IQ - SALURAN 4',
-      imageUrl: cfg.urls.radio4.imageUrl[darkMode * 1],
-    },
-  ]
 
   React.useEffect(() => {
     if (isUndefined(store.get('podcasts'))) {
@@ -114,6 +81,7 @@ export default function Archive() {
         audioSource={audioSource}
         audioTitle={audioTitle}
         audioImage={audioImage}
+        trackInfo={trackInfo}
       />
       <ListControls>
         <Tabs
@@ -148,7 +116,7 @@ export default function Archive() {
             )
           })}
         {radioMode &&
-          stations.map((station) => {
+          cfg.urls.radio.map((station) => {
             return (
               <ListItem
                 key={station.title}
@@ -156,11 +124,15 @@ export default function Archive() {
                 onClick={() => {
                   setAudioSource(station.audioUrl)
                   setAudioTitle(station.title)
-                  setAudioImage(station.imageUrl)
+                  setAudioImage(cfg.urls.logo[darkMode * 1])
+                  setTrackInfo(station.trackInfo)
                 }}
               >
                 <ListItemAvatar>
-                  <Avatar alt="station image" src={station.imageUrl} />
+                  <Avatar
+                    alt="station image"
+                    src={cfg.urls.logo[darkMode * 1]}
+                  />
                 </ListItemAvatar>
                 <ListItemText id={station.title} primary={station.title} />
               </ListItem>

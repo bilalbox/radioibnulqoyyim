@@ -1,30 +1,32 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import AppBar from '@material-ui/core/AppBar'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Divider from '@material-ui/core/Divider'
-import Drawer from '@material-ui/core/Drawer'
-import IconButton from '@material-ui/core/IconButton'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import MenuIcon from '@material-ui/icons/Menu'
-import Toolbar from '@material-ui/core/Toolbar'
 import {
-  RiRecordMailFill,
-  RiInformationFill,
-  RiMoonFill,
-  RiSunFill,
-} from 'react-icons/ri'
-import { GoRadioTower } from 'react-icons/go'
-import Switch from '@material-ui/core/Switch'
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  Toolbar,
+  Switch,
+  Typography,
+} from '@material-ui/core'
+import {
+  Menu as MenuIcon,
+  Info as InfoIcon,
+  Brightness2 as MoonIcon,
+  Brightness4 as SunIcon,
+  Radio as RadioIcon,
+} from '@material-ui/icons'
 import { styled, makeStyles, useTheme } from '@material-ui/core/styles'
 
 const drawerWidth = 150
 const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
-  fontSize: '1.2em',
+  fontSize: '1em',
   textDecoration: 'none',
-  padding: 2,
+  padding: theme.spacing(10),
 }))
 
 const useStyles = makeStyles((theme) => ({
@@ -63,23 +65,23 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button key="home">
-          <StyledLink id="home" className="menu-item" to="/">
-            <GoRadioTower /> Home
-          </StyledLink>
-        </ListItem>
+        <StyledLink id="home" className="menu-item" to="/">
+          <ListItem button key="home">
+            <RadioIcon /> <Typography variant="h6"> Home </Typography>
+          </ListItem>
+        </StyledLink>
 
-        <ListItem button key="about">
-          <StyledLink id="about" className="menu-item" to="/about">
-            <RiInformationFill /> Tentang
-          </StyledLink>
-        </ListItem>
+        <StyledLink id="about" className="menu-item" to="/about">
+          <ListItem button key="about">
+            <InfoIcon /> <Typography variant="h6"> Tentang</Typography>
+          </ListItem>
+        </StyledLink>
       </List>
       <Divider />
       <List>
         <ListItem button key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
-            <RiSunFill />
+            <SunIcon />
             <Switch
               checked={darkMode}
               label="Dark Mode"
@@ -89,7 +91,7 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
               name="darkMode"
               inputProps={{ 'aria-label': 'primary switch' }}
             />
-            <RiMoonFill />
+            <MoonIcon />
           </div>
         </ListItem>
       </List>

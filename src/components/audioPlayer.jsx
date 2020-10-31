@@ -1,13 +1,12 @@
 import React from 'react'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
-import FastForward from '@material-ui/icons/FastForward'
-import FastRewind from '@material-ui/icons/FastRewind'
-import Pause from '@material-ui/icons/Pause'
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography,
+} from '@material-ui/core'
+import { PlayArrow, FastForward, FastRewind, Pause } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     display: 'flex',
+    flexDirection: 'column',
     height: 'auto',
   },
   controls: {
@@ -64,12 +64,6 @@ const useAudio = (aS) => {
         case 'rw':
           audio.currentTime -= 5
           break
-
-        // // TODO: Playback progress bar
-        // case 'get_current_time':
-        //   return audio.currentTime
-        // case 'get_duration':
-        //   return audio.duration
         default:
           setPlaying(!playing)
       }
@@ -95,17 +89,28 @@ const useAudio = (aS) => {
   } else return ['playing', () => console.log('gatsby hack')]
 }
 
-export default function AudioPlayer({ audioSource, audioTitle, audioImage }) {
+export default function AudioPlayer({
+  audioSource,
+  audioTitle,
+  audioImage,
+  trackInfo = false,
+}) {
   const classes = useStyles()
   let [playing, control] = useAudio(audioSource)
+  const [trackTitle, setTrackTitle] = React.useState('')
 
-  // // TODO: Playback progress bar
-  // React.useEffect(() => {
-  //   const progressBar = setTimeout(() => {
-  //     setTimeLeft(calculateTimeLeft())
-  //   }, 1000)
-  //   return () => clearTimeout(timer)
-  // })
+  React.useEffect(() => {
+    if (trackInfo) {
+      fetch(trackInfo, {
+        headers: new Headers({
+          origin: 'anonymous',
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => setTrackTitle(data))
+        .catch(() => setTrackTitle('OFFLINE'))
+    }
+  }, [trackInfo])
 
   return (
     <Card className={classes.root}>
@@ -117,6 +122,7 @@ export default function AudioPlayer({ audioSource, audioTitle, audioImage }) {
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography variant="h6">{audioTitle}</Typography>
+          <Typography variant="caption">{trackTitle}</Typography>
         </CardContent>
         <div className={classes.controls}>
           <IconButton aria-label={'rewind'} onClick={() => control('rw')}>
@@ -126,7 +132,7 @@ export default function AudioPlayer({ audioSource, audioTitle, audioImage }) {
             aria-label={playing ? 'play' : 'pause'}
             onClick={() => control('pp')}
           >
-            {playing ? <Pause /> : <PlayArrowIcon />}
+            {playing ? <Pause /> : <PlayArrow />}
           </IconButton>
           <IconButton aria-label={'fast-forward'} onClick={() => control('ff')}>
             <FastForward />
