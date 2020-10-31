@@ -44,6 +44,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-preact`,
     `gatsby-plugin-offline`,
   ],
 }
