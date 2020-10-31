@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import logo from '../images/logo.png'
+import Logo from '../images/logo.svg'
 
 export default function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -63,7 +63,7 @@ export default function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: logo,
+          content: Logo,
         },
       ].concat(meta)}
     />

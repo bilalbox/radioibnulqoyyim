@@ -5,7 +5,7 @@ export const lightTheme = responsiveFontSizes(
     palette: {
       type: 'light',
       primary: {
-        main: '#f44336',
+        main: '#da241c',
       },
       secondary: {
         main: '#7b1fa2',

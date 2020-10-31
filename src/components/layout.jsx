@@ -13,9 +13,11 @@ export default function Layout({ children }) {
   const [radioMode, setRadioMode] = React.useState(true)
   const [audioSource, setAudioSource] = React.useState(cfg.urls.radio1.audio)
   const [audioTitle, setAudioTitle] = React.useState('RADIO - SALURAN 1')
-  const [audioImage, setAudioImage] = React.useState(cfg.urls.radio1.imageUrl)
   const [darkMode, setDarkMode] = React.useState(
     isUndefined(darkmode) ? false : darkmode
+  )
+  const [audioImage, setAudioImage] = React.useState(
+    cfg.urls.radio1.imageUrl[darkMode * 1]
   )
   let theme = darkMode ? darkTheme : lightTheme
   const toggleDarkMode = () => {
@@ -37,6 +39,7 @@ export default function Layout({ children }) {
         setAudioImage,
         radioMode,
         setRadioMode,
+        darkMode,
       }}
     >
       <ThemeProvider theme={theme}>

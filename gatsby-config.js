@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 module.exports = {
   siteMetadata: {
     title: `Radio Ibnul Qoyyim`,
@@ -16,12 +14,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-plugin-svgr-svgo`,
     `gatsby-transformer-sharp`,
     `gatsby-image`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
-        icon: `${__dirname}/src/images/logo.png`,
+        icon: `${__dirname}/src/images/logo.svg`,
       },
     },
     {
@@ -31,7 +30,7 @@ module.exports = {
         short_name: `Radio IQ`,
         start_url: `/`,
         display: `minimal-ui`,
-        icon: `src/images/logo.png`,
+        icon: `src/images/logo.svg`,
         icon_options: { purpose: `any maskable` },
       },
     },

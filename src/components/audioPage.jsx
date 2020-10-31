@@ -1,19 +1,29 @@
 import React from 'react'
 import Parser from 'rss-parser'
-import Paper from '@material-ui/core/Paper'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import Avatar from '@material-ui/core/Avatar'
-import ListItemText from '@material-ui/core/ListItemText'
-import Typography from '@material-ui/core/Typography'
+import {
+  Tabs,
+  Tab,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+} from '@material-ui/core'
 import RadioIcon from '@material-ui/icons/Radio'
 import ListIcon from '@material-ui/icons/List'
-import Switch from '@material-ui/core/Switch'
 import store from 'store/dist/store.modern'
-import { styled, useTheme } from '@material-ui/core/styles'
+import { styled } from '@material-ui/core/styles'
+// import Tabs from '@material-ui/core/Tabs'
+// import Tab from '@material-ui/core/Tab'
+// import List from '@material-ui/core/List'
+// import ListItem from '@material-ui/core/ListItem'
+// import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+// import Avatar from '@material-ui/core/Avatar'
+// import ListItemText from '@material-ui/core/ListItemText'
+// import RadioIcon from '@material-ui/icons/Radio'
+// import ListIcon from '@material-ui/icons/List'
+// import store from 'store/dist/store.modern'
+// import { styled, useTheme } from '@material-ui/core/styles'
 
 import AudioContext from '../contexts/audioContext'
 import AudioPlayer from './audioPlayer'
@@ -42,7 +52,6 @@ const ListControls = styled('div')({
 let parser = new Parser()
 
 export default function Archive() {
-  const theme = useTheme()
   const {
     radioMode,
     setRadioMode,
@@ -52,6 +61,7 @@ export default function Archive() {
     setAudioTitle,
     audioImage,
     setAudioImage,
+    darkMode,
   } = React.useContext(AudioContext)
   const [podcasts, setPodcasts] = React.useState([])
 
@@ -59,17 +69,22 @@ export default function Archive() {
     {
       audioUrl: cfg.urls.radio1.audioUrl,
       title: 'RADIO IQ - SALURAN 1',
-      imageUrl: cfg.urls.radio1.imageUrl,
+      imageUrl: cfg.urls.radio1.imageUrl[darkMode * 1],
     },
     {
       audioUrl: cfg.urls.radio2.audioUrl,
       title: 'RADIO IQ - SALURAN 2',
-      imageUrl: cfg.urls.radio2.imageUrl,
+      imageUrl: cfg.urls.radio2.imageUrl[darkMode * 1],
     },
     {
-      audioUrl: cfg.urls.radio2.audioUrl,
+      audioUrl: cfg.urls.radio3.audioUrl,
       title: 'RADIO IQ - SALURAN 3',
-      imageUrl: cfg.urls.radio2.imageUrl,
+      imageUrl: cfg.urls.radio3.imageUrl[darkMode * 1],
+    },
+    {
+      audioUrl: cfg.urls.radio4.audioUrl,
+      title: 'RADIO IQ - SALURAN 4',
+      imageUrl: cfg.urls.radio4.imageUrl[darkMode * 1],
     },
   ]
 
