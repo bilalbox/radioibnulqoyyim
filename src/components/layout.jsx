@@ -3,7 +3,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import store from 'store/dist/store.modern'
 import { isUndefined } from 'lodash'
 
-import AudioContext from '../contexts/audioContext'
+import { AudioProvider } from '../contexts/audioContext'
 import { lightTheme, darkTheme } from '../utils/theme'
 import cfg from '../utils/config'
 import Drawer from './drawer'
@@ -12,8 +12,8 @@ export default function Layout({ children }) {
   const darkmode = store.get('darkmode')
   const [radioMode, setRadioMode] = React.useState(true)
   const [audioSource, setAudioSource] = React.useState(cfg.urls.radio[0].audio)
-  const [trackInfo, setTrackInfo] = React.useState(cfg.urls.radio[0].trackInfo)
-  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
+  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
+  const [audioTitle, setAudioTitle] = React.useState('Silahkan Pilih Saluran')
   const [darkMode, setDarkMode] = React.useState(
     isUndefined(darkmode) ? false : darkmode
   )
@@ -30,7 +30,7 @@ export default function Layout({ children }) {
   }, [darkMode])
 
   return (
-    <AudioContext.Provider
+    <AudioProvider
       value={{
         audioSource,
         setAudioSource,
@@ -40,8 +40,8 @@ export default function Layout({ children }) {
         setAudioImage,
         radioMode,
         setRadioMode,
-        trackInfo,
-        setTrackInfo,
+        audioInfo,
+        setAudioInfo,
         darkMode,
       }}
     >
@@ -49,6 +49,6 @@ export default function Layout({ children }) {
         <Drawer darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         {children}
       </ThemeProvider>
-    </AudioContext.Provider>
+    </AudioProvider>
   )
 }

@@ -39,22 +39,17 @@ const ListControls = styled('div')({
 
 let parser = new Parser()
 
-export default function Archive() {
+export default function AudioPage() {
   const {
-    radioMode,
     setRadioMode,
-    audioSource,
     setAudioSource,
-    audioTitle,
     setAudioTitle,
-    audioImage,
     setAudioImage,
-    trackInfo,
-    setTrackInfo,
+    setAudioInfo,
     darkMode,
   } = React.useContext(AudioContext)
   const [podcasts, setPodcasts] = React.useState([])
-
+  const [currentTab, setCurrentTab] = React.useState(0)
   React.useEffect(() => {
     if (isUndefined(store.get('podcasts'))) {
       parser.parseURL(cfg.urls.rss).then((feed) => {
@@ -76,19 +71,13 @@ export default function Archive() {
 
   return (
     <Container>
-      <AudioPlayer
-        radioMode
-        audioSource={audioSource}
-        audioTitle={audioTitle}
-        audioImage={audioImage}
-        trackInfo={trackInfo}
-      />
+      <AudioPlayer />
       <ListControls>
         <Tabs
-          value={!radioMode * 1}
+          value={currentTab}
           indicatorColor="primary"
           textColor="primary"
-          onChange={(e, v) => setRadioMode(v == 0)}
+          onChange={(e, v) => setCurrentTab(v)}
           aria-label="tab"
         >
           <Tab label="RADIO" icon={<RadioIcon />} />
@@ -96,26 +85,7 @@ export default function Archive() {
         </Tabs>
       </ListControls>
       <List dense>
-        {!radioMode &&
-          podcasts.map((podcast) => {
-            return (
-              <ListItem
-                key={podcast.id}
-                button
-                onClick={() => {
-                  setAudioSource(podcast.audioUrl)
-                  setAudioTitle(podcast.title)
-                  setAudioImage(podcast.imageUrl)
-                }}
-              >
-                <ListItemAvatar>
-                  <Avatar alt="episode image" src={podcast.imageUrl} />
-                </ListItemAvatar>
-                <ListItemText id={podcast.id} primary={podcast.title} />
-              </ListItem>
-            )
-          })}
-        {radioMode &&
+        {currentTab == 0 &&
           cfg.urls.radio.map((station) => {
             return (
               <ListItem
@@ -125,7 +95,8 @@ export default function Archive() {
                   setAudioSource(station.audioUrl)
                   setAudioTitle(station.title)
                   setAudioImage(cfg.urls.logo[darkMode * 1])
-                  setTrackInfo(station.trackInfo)
+                  setAudioInfo(station.audioInfo)
+                  setRadioMode(true)
                 }}
               >
                 <ListItemAvatar>
@@ -135,6 +106,27 @@ export default function Archive() {
                   />
                 </ListItemAvatar>
                 <ListItemText id={station.title} primary={station.title} />
+              </ListItem>
+            )
+          })}
+        {currentTab == 1 &&
+          podcasts.map((podcast) => {
+            return (
+              <ListItem
+                key={podcast.id}
+                button
+                onClick={() => {
+                  setAudioSource(podcast.audioUrl)
+                  setAudioTitle(podcast.title)
+                  setAudioImage(podcast.imageUrl)
+                  setAudioInfo(null)
+                  setRadioMode(false)
+                }}
+              >
+                <ListItemAvatar>
+                  <Avatar alt="episode image" src={podcast.imageUrl} />
+                </ListItemAvatar>
+                <ListItemText id={podcast.id} primary={podcast.title} />
               </ListItem>
             )
           })}
