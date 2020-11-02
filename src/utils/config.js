@@ -13,12 +13,12 @@ const cfg = {
           'https://cors-anywhere.herokuapp.com/https://ssg.streamingmurah.com:8286/currentsong?sid=1',
         audioUrl: 'https://ssg.streamingmurah.com:8286/stream',
       },
-      // {
-      //   title: 'RADIO IQ - SALURAN 2',
-      //   audioInfo:
-      //     'https://cors-anywhere.herokuapp.com/https://ssg.streamingmurah.com:8256/currentsong?sid=1',
-      //   audioUrl: 'https://ssg.streamingmurah.com:8256/stream',
-      // },
+      {
+        title: 'RADIO IQ - SALURAN 2',
+        audioInfo:
+          'https://cors-anywhere.herokuapp.com/https://ssg.streamingmurah.com:8256/currentsong?sid=1',
+        audioUrl: 'https://ssg.streamingmurah.com:8256/stream',
+      },
       {
         title: 'RADIO IQ - SALURAN 3',
         audioInfo:

@@ -28,7 +28,6 @@ module.exports = {
     },
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-preact`,
     `gatsby-plugin-offline`,
   ],
 }

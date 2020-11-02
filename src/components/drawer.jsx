@@ -19,7 +19,7 @@ import {
   Brightness4 as SunIcon,
   Radio as RadioIcon,
 } from '@material-ui/icons'
-import { styled, makeStyles, useTheme } from '@material-ui/core/styles'
+import { styled, makeStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 150
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
-  const theme = useTheme()
   const classes = useStyles()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
@@ -135,7 +134,6 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
         <Drawer
           container={container}
           variant="temporary"
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
           open={mobileOpen}
           onClose={handleDrawerToggle}
           classes={{

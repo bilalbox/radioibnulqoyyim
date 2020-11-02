@@ -1,22 +1,68 @@
 import React from 'react'
 import Parser from 'rss-parser'
 import {
-  Tabs,
-  Tab,
+  Avatar,
+  Card,
+  CardMedia,
   List,
   ListItem,
   ListItemAvatar,
-  Avatar,
   ListItemText,
+  Tab,
+  Tabs,
 } from '@material-ui/core'
 import { Radio as RadioIcon, List as ListIcon } from '@material-ui/icons'
 import store from 'store/dist/store.modern'
-import { styled } from '@material-ui/core/styles'
+import { makeStyles, styled } from '@material-ui/core/styles'
 
 import AudioContext from '../contexts/audioContext'
 import AudioPlayer from './audioPlayer'
 import cfg from '../utils/config'
 import { isUndefined } from 'lodash'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '20vw',
+    '@media (max-width: 1300px)': {
+      width: '30vw',
+    },
+    '@media (max-width: 500px)': {
+      width: '100vw',
+      backgroundColor: theme.palette.background.default,
+    },
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cover: {
+    width: '20vw',
+    height: '20vw',
+    '@media (max-width: 1300px)': {
+      width: '30vw',
+      height: '30vw',
+    },
+    '@media (max-width: 500px)': {
+      width: '60vw',
+      height: '60vw',
+    },
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: 'auto',
+    alignItems: 'center',
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: theme.spacing(1),
+  },
+}))
 
 const Container = styled('div')({
   padding: '0 2em',
@@ -29,21 +75,15 @@ const Container = styled('div')({
   },
 })
 
-const ListControls = styled('div')({
-  padding: '0 2em',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'row',
-})
-
 let parser = new Parser()
 
 export default function AudioPage() {
+  const classes = useStyles()
   const {
     setRadioMode,
     setAudioSource,
     setAudioTitle,
+    audioImage,
     setAudioImage,
     setAudioInfo,
     darkMode,
@@ -71,8 +111,11 @@ export default function AudioPage() {
 
   return (
     <Container>
+      <Card className={classes.root}>
+        <CardMedia className={classes.cover} image={audioImage} />
+      </Card>
       <AudioPlayer />
-      <ListControls>
+      <div className={classes.controls}>
         <Tabs
           value={currentTab}
           indicatorColor="primary"
@@ -83,7 +126,7 @@ export default function AudioPage() {
           <Tab label="RADIO" icon={<RadioIcon />} />
           <Tab label="ARSIP" icon={<ListIcon />} />
         </Tabs>
-      </ListControls>
+      </div>
       <List dense>
         {currentTab == 0 &&
           cfg.urls.radio.map((station) => {
