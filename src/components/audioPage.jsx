@@ -3,6 +3,7 @@ import Parser from 'rss-parser'
 import {
   Avatar,
   Card,
+  CardContent,
   CardMedia,
   List,
   ListItem,
@@ -10,6 +11,7 @@ import {
   ListItemText,
   Tab,
   Tabs,
+  Typography,
 } from '@material-ui/core'
 import { Radio as RadioIcon, List as ListIcon } from '@material-ui/icons'
 import store from 'store/dist/store.modern'
@@ -82,6 +84,7 @@ export default function AudioPage() {
   const {
     audioSource,
     setAudioSource,
+    audioTitle,
     setAudioTitle,
     audioImage,
     setAudioImage,
@@ -113,6 +116,9 @@ export default function AudioPage() {
     <Container>
       <Card className={classes.root}>
         <CardMedia className={classes.cover} image={audioImage} />
+        <CardContent>
+          <Typography variant="body2">{audioTitle}</Typography>
+        </CardContent>
         <AudioPlayer audioSource={audioSource} darkMode={darkMode} />
       </Card>
       <div className={classes.controls}>
@@ -133,6 +139,7 @@ export default function AudioPage() {
             return (
               <ListItem
                 key={station.title}
+                selected={station.audioUrl === audioSource}
                 button
                 onClick={() => {
                   setAudioSource(station.audioUrl)
@@ -153,6 +160,7 @@ export default function AudioPage() {
             return (
               <ListItem
                 key={podcast.id}
+                selected={podcast.audioUrl === audioSource}
                 button
                 onClick={() => {
                   setAudioSource(podcast.audioUrl)
