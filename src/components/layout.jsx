@@ -10,9 +10,10 @@ import Drawer from './drawer'
 
 export default function Layout({ children }) {
   const darkmode = store.get('darkmode')
-  const [radioMode, setRadioMode] = React.useState(true)
-  const [audioSource, setAudioSource] = React.useState(cfg.urls.radio[0].audio)
-  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
+  const [audioSource, setAudioSource] = React.useState(
+    cfg.urls.radio[2].audioUrl
+  )
+  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[2].audioInfo)
   const [audioTitle, setAudioTitle] = React.useState('Silahkan Pilih Saluran')
   const [darkMode, setDarkMode] = React.useState(
     isUndefined(darkmode) ? false : darkmode
@@ -38,8 +39,6 @@ export default function Layout({ children }) {
         setAudioTitle,
         audioImage,
         setAudioImage,
-        radioMode,
-        setRadioMode,
         audioInfo,
         setAudioInfo,
         darkMode,

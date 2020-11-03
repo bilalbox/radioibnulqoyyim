@@ -80,7 +80,7 @@ let parser = new Parser()
 export default function AudioPage() {
   const classes = useStyles()
   const {
-    setRadioMode,
+    audioSource,
     setAudioSource,
     setAudioTitle,
     audioImage,
@@ -113,8 +113,8 @@ export default function AudioPage() {
     <Container>
       <Card className={classes.root}>
         <CardMedia className={classes.cover} image={audioImage} />
+        <AudioPlayer audioSource={audioSource} darkMode={darkMode} />
       </Card>
-      <AudioPlayer />
       <div className={classes.controls}>
         <Tabs
           value={currentTab}
@@ -139,7 +139,6 @@ export default function AudioPage() {
                   setAudioTitle(station.title)
                   setAudioImage(cfg.urls.logo[darkMode * 1])
                   setAudioInfo(station.audioInfo)
-                  setRadioMode(true)
                 }}
               >
                 <ListItemAvatar>
@@ -163,7 +162,6 @@ export default function AudioPage() {
                   setAudioTitle(podcast.title)
                   setAudioImage(podcast.imageUrl)
                   setAudioInfo(null)
-                  setRadioMode(false)
                 }}
               >
                 <ListItemAvatar>
