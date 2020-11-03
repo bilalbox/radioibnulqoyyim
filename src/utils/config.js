@@ -1,11 +1,10 @@
 import Logo from '../images/logo.svg'
-import DarkLogo from '../images/logo-dark.svg'
 const cfg = {
   urls: {
     email: 'mailto:salafybpp@gmail.com',
     mainSite: 'https://raihsurga.com',
     podcast: 'https://anchor.fm/radioibnulqoyyim',
-    logo: [Logo, DarkLogo],
+    logo: Logo,
     radio: [
       {
         title: 'RADIO IQ - SALURAN 1',

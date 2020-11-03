@@ -137,15 +137,12 @@ export default function AudioPage() {
                 onClick={() => {
                   setAudioSource(station.audioUrl)
                   setAudioTitle(station.title)
-                  setAudioImage(cfg.urls.logo[darkMode * 1])
+                  setAudioImage(cfg.urls.logo)
                   setAudioInfo(station.audioInfo)
                 }}
               >
                 <ListItemAvatar>
-                  <Avatar
-                    alt="station image"
-                    src={cfg.urls.logo[darkMode * 1]}
-                  />
+                  <Avatar alt="station image" src={cfg.urls.logo} />
                 </ListItemAvatar>
                 <ListItemText id={station.title} primary={station.title} />
               </ListItem>

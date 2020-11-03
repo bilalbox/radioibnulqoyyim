@@ -18,9 +18,7 @@ export default function Layout({ children }) {
   const [darkMode, setDarkMode] = React.useState(
     isUndefined(darkmode) ? false : darkmode
   )
-  const [audioImage, setAudioImage] = React.useState(
-    cfg.urls.logo[darkMode * 1]
-  )
+  const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
   let theme = darkMode ? darkTheme : lightTheme
   const toggleDarkMode = () => {
     store.set('darkmode', !darkMode)

@@ -42,8 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   titleBar: {
-    color: theme.palette.primary.contrastText,
-    paddingTop: '1em',
+    paddingTop: '0',
   },
   drawerPaper: {
     width: drawerWidth,
@@ -61,18 +60,20 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <div className={[classes.toolbar, classes.drawerPaper]} />
       <Divider />
       <List>
         <StyledLink id="home" className="menu-item" to="/">
           <ListItem button key="home">
-            <RadioIcon /> <Typography variant="h6"> Home </Typography>
+            <RadioIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Home </Typography>
           </ListItem>
         </StyledLink>
 
         <StyledLink id="about" className="menu-item" to="/about">
           <ListItem button key="about">
-            <InfoIcon /> <Typography variant="h6"> Tentang</Typography>
+            <InfoIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Tentang</Typography>
           </ListItem>
         </StyledLink>
       </List>
@@ -80,7 +81,7 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
       <List>
         <ListItem button key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
-            <SunIcon />
+            <SunIcon color={darkMode ? 'disabled' : 'inherit'} />
             <Switch
               checked={darkMode}
               label="Dark Mode"
@@ -90,7 +91,7 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
               name="darkMode"
               inputProps={{ 'aria-label': 'primary switch' }}
             />
-            <MoonIcon />
+            <MoonIcon color={darkMode ? 'inherit' : 'disabled'} />
           </div>
         </ListItem>
       </List>
