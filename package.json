@@ -1,9 +1,12 @@
 {
   "name": "radioibnulqoyyim",
-  "private": true,
+  "private": false,
   "description": "Radio Ibnul Qoyyim - Radio Sunnah Indonesia",
   "version": "1.0.0",
-  "author": "أبو عبدالمجيد الأمريكي",
+  "author": {
+    "name": "Nasir Bilal",
+    "email": "bilalbox@gmail.com"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -35,17 +38,14 @@
     "react-typography": "^0.16.19",
     "rss-parser": "^3.9.0",
     "store": "^2.0.12",
-    "typography": "^0.16.19",
-    "yarn": "^1.22.5"
+    "typography": "^0.16.19"
   },
   "devDependencies": {
     "eslint-config-react-app": "^5.2.1",
     "prettier": "^2.1.2"
   },
   "keywords": [
-    "ibnulqoyyim",
     "radio",
-    "salafi",
     "salaf",
     "sunnah",
     "indonesia",
