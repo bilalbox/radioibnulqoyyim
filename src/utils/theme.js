@@ -8,7 +8,8 @@ export const lightTheme = responsiveFontSizes(
         main: '#da241c',
       },
       background: {
-        default: '#fff',
+        default: '#fafafa',
+        paper: '#fcfcfc'
       },
     },
   })
@@ -22,7 +23,8 @@ export const darkTheme = responsiveFontSizes(
         main: '#2196f3',
       },
       background: {
-        default: '#111',
+        default: '#1a1a1a',
+        paper: '#2a2a2a',
       },
     },
   })

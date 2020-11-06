@@ -1,5 +1,8 @@
 import React from 'react'
 import Parser from 'rss-parser'
+import Marquee from 'react-double-marquee'
+import { isUndefined } from 'lodash'
+import axios from 'axios'
 import {
   Avatar,
   Card,
@@ -17,21 +20,16 @@ import { Radio as RadioIcon, List as ListIcon } from '@material-ui/icons'
 import store from 'store/dist/store.modern'
 import { makeStyles, styled } from '@material-ui/core/styles'
 
-import AudioContext from '../contexts/audioContext'
 import AudioPlayer from './audioPlayer'
 import cfg from '../utils/config'
-import { isUndefined } from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '20vw',
-    '@media (max-width: 1300px)': {
-      width: '30vw',
-    },
-    '@media (max-width: 500px)': {
+    width: '60vw',
+    '@media (max-width: 800px)': {
       width: '100vw',
       backgroundColor: theme.palette.background.default,
     },
@@ -41,15 +39,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cover: {
-    width: '20vw',
-    height: '20vw',
-    '@media (max-width: 1300px)': {
-      width: '30vw',
-      height: '30vw',
-    },
-    '@media (max-width: 500px)': {
-      width: '60vw',
-      height: '60vw',
+    width: '10vw',
+    height: '10vw',
+    marginBottom: '3vw',
+    '@media (max-width: 800px)': {
+      width: '20vw',
+      height: '20vw',
+      marginBottom: '1vw',
     },
   },
   content: {
@@ -67,32 +63,27 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Container = styled('div')({
-  padding: '0 2em',
+  padding: '0 1em',
   display: 'flex',
   width: '100%',
   alignItems: 'center',
   flexDirection: 'column',
-  '@media (max-width: 800px)': {
-    padding: '0 1em',
-  },
 })
 
 let parser = new Parser()
 
 export default function AudioPage() {
   const classes = useStyles()
-  const {
-    audioSource,
-    setAudioSource,
-    audioTitle,
-    setAudioTitle,
-    audioImage,
-    setAudioImage,
-    setAudioInfo,
-    darkMode,
-  } = React.useContext(AudioContext)
   const [podcasts, setPodcasts] = React.useState([])
   const [currentTab, setCurrentTab] = React.useState(0)
+  const [nowPlayingName, setNowPlayingName] = React.useState('')
+  const [audioSource, setAudioSource] = React.useState(
+    cfg.urls.radio[0].audioUrl
+  )
+  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
+  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
+  const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
+
   React.useEffect(() => {
     if (isUndefined(store.get('podcasts'))) {
       parser.parseURL(cfg.urls.rss).then((feed) => {
@@ -112,15 +103,62 @@ export default function AudioPage() {
     }
   }, [])
 
+  React.useEffect(() => {
+    if (audioInfo)
+      axios
+        .get(audioInfo)
+        .then((res) => setNowPlayingName(res.data))
+        .catch((err) => console.error('Error: ', err))
+  }, [audioInfo])
+
   return (
     <Container>
+      <CardMedia className={classes.cover} image={audioImage} />
+
       <Card className={classes.root}>
-        <CardMedia className={classes.cover} image={audioImage} />
-        <CardContent>
-          <Typography variant="body2">{audioTitle}</Typography>
-        </CardContent>
-        <AudioPlayer audioSource={audioSource} darkMode={darkMode} />
+        {audioInfo && (
+          <>
+            <CardContent>
+              <Typography variant="h6" align="center">
+                {audioTitle}
+              </Typography>
+            </CardContent>
+            <CardContent
+              style={{
+                width: '100%',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <Marquee direction="left" delay={0} speed={0.02}>
+                <Typography variant="h6" component="span">
+                  {nowPlayingName}
+                </Typography>
+              </Marquee>
+            </CardContent>
+          </>
+        )}
+
+        {!audioInfo && (
+          <>
+            <CardContent
+              style={{
+                width: '100%',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <Marquee direction="left" delay={0} speed={0.02}>
+                <Typography variant="h6" component="span">
+                  {audioTitle}
+                </Typography>
+              </Marquee>
+            </CardContent>
+          </>
+        )}
+        <AudioPlayer audioSource={audioSource} />
       </Card>
+
       <div className={classes.controls}>
         <Tabs
           value={currentTab}
@@ -134,7 +172,7 @@ export default function AudioPage() {
         </Tabs>
       </div>
       <List dense>
-        {currentTab == 0 &&
+        {currentTab === 0 &&
           cfg.urls.radio.map((station) => {
             return (
               <ListItem
@@ -155,7 +193,7 @@ export default function AudioPage() {
               </ListItem>
             )
           })}
-        {currentTab == 1 &&
+        {currentTab === 1 &&
           podcasts.map((podcast) => {
             return (
               <ListItem
