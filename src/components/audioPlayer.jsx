@@ -1,26 +1,16 @@
 import React from 'react'
-import './vime-player-dark.css'
-import './vime-player-light.css'
 import { VimePlayer, VimeAudio, VimeDefaultUi } from '@vime/react'
-import { makeStyles, withTheme } from '@material-ui/core/styles'
+import '@vime/core/themes/default.css'
 
-const useStyles = makeStyles({
-  player: {
-    boxShadow: 'none',
-  },
-})
-
-function AudioPlayer({ theme, audioSource }) {
-  const classes = useStyles()
-
+export default function AudioPlayer({ audioSource }) {
   return (
-    <VimePlayer className={classes.player} theme={theme.palette.type}>
-      <VimeAudio>
-        <source src={audioSource} />
-      </VimeAudio>
-      <VimeDefaultUi noSkeleton />
-    </VimePlayer>
+    <div>
+      <VimePlayer>
+        <VimeAudio>
+          <source src={audioSource} />
+        </VimeAudio>
+        <VimeDefaultUi noSkeleton style={{ width: '100%' }} />
+      </VimePlayer>
+    </div>
   )
 }
-
-export default withTheme(AudioPlayer)

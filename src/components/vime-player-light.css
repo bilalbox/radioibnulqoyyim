@@ -1,5 +1,5 @@
 vime-player[theme='light'] {
-  --vm-player-bg: #fff;
+  --vm-player-bg: transparent;
   --vm-player-box-shadow: 0 0 8px 2px var(--vm-color-gray-100);
   --vm-slider-track-color: var(--vm-color-gray-100);
   --vm-slider-value-color: var(--vm-player-theme, var(--vm-color-dark));
@@ -7,7 +7,7 @@ vime-player[theme='light'] {
     0 0 0 1px var(--vm-color-gray-200);
   --vm-tooltip-bg: #fff;
   --vm-tooltip-color: var(--vm-color-dark);
-  --vm-controls-bg: transparent;
+  --vm-controls-bg: #fff;
   --vm-control-color: var(--vm-color-dark);
   --vm-control-tap-highlight: var(--vm-color-gray-100);
   --vm-control-focus-color: #fff;

@@ -1,11 +1,11 @@
 import React from 'react'
 import Parser from 'rss-parser'
 import Marquee from 'react-double-marquee'
+import Loadable from 'react-loadable'
 import { isUndefined } from 'lodash'
 import axios from 'axios'
 import {
   Avatar,
-  Card,
   CardContent,
   CardMedia,
   List,
@@ -21,7 +21,6 @@ import { Radio as RadioIcon, List as ListIcon } from '@material-ui/icons'
 import store from 'store/dist/store.modern'
 import { makeStyles, styled } from '@material-ui/core/styles'
 
-import AudioPlayer from './audioPlayer'
 import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
@@ -30,10 +29,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     width: '20vw',
+    backgroundColor: theme.palette.background.default,
     '@media (max-width: 1300px)': {
       width: '30vw',
+      backgroundColor: theme.palette.background.default,
     },
-    '@media (max-width: 500px)': {
+    '@media (max-width: 600px)': {
       width: '100vw',
       backgroundColor: theme.palette.background.default,
     },
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
       width: '30vw',
       height: '30vw',
     },
-    '@media (max-width: 500px)': {
+    '@media (max-width: 600px)': {
       width: '60vw',
       height: '60vw',
     },
@@ -91,6 +92,13 @@ export default function AudioPage() {
   const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
   const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
 
+  const LoadableAudioPlayer = Loadable({
+    loader: () => import('../components/audioPlayer'),
+    loading() {
+      return <div>Loading...</div>
+    },
+  })
+
   React.useEffect(() => {
     if (isUndefined(store.get('podcasts'))) {
       parser.parseURL(cfg.urls.rss).then((feed) => {
@@ -120,12 +128,12 @@ export default function AudioPage() {
 
   return (
     <Container>
-      {matches && <CardMedia className={classes.cover} image={audioImage} />}
-      <Card className={classes.root}>
+      <div className={classes.root}>
+        {matches && <CardMedia className={classes.cover} image={audioImage} />}
         {audioInfo && (
           <>
             <CardContent>
-              <Typography variant={matches ? 'h5' : 'body2'} align="center">
+              <Typography variant={matches ? 'h6' : 'body1'} align="center">
                 {audioTitle}
               </Typography>
             </CardContent>
@@ -136,11 +144,15 @@ export default function AudioPage() {
                 whiteSpace: 'nowrap',
               }}
             >
-              <Marquee direction="left" delay={0} speed={0.02}>
-                <Typography variant={matches ? 'h5' : 'body2'} component="span">
+              <Typography
+                variant={matches ? 'h6' : 'body1'}
+                align="center"
+                component="span"
+              >
+                <Marquee direction="left" delay={0}>
                   {nowPlayingName}
-                </Typography>
-              </Marquee>
+                </Marquee>
+              </Typography>
             </CardContent>
           </>
         )}
@@ -154,16 +166,20 @@ export default function AudioPage() {
                 whiteSpace: 'nowrap',
               }}
             >
-              <Marquee direction="left" delay={0} speed={0.02}>
-                <Typography variant={matches ? 'h5' : 'body2'} component="span">
+              <Typography
+                variant={matches ? 'h6' : 'body1'}
+                align="center"
+                component="span"
+              >
+                <Marquee direction="left" delay={0}>
                   {audioTitle}
-                </Typography>
-              </Marquee>
+                </Marquee>
+              </Typography>
             </CardContent>
           </>
         )}
-        <AudioPlayer audioSource={audioSource} />
-      </Card>
+        <LoadableAudioPlayer audioSource={audioSource} />
+      </div>
       <div className={classes.controls}>
         <Tabs
           value={currentTab}

@@ -18,10 +18,11 @@ import {
   Brightness2 as MoonIcon,
   Brightness4 as SunIcon,
   Radio as RadioIcon,
+  CalendarToday as CalendarIcon,
 } from '@material-ui/icons'
 import { styled, makeStyles } from '@material-ui/core/styles'
 
-const drawerWidth = 150
+const drawerWidth = 180
 const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
   fontSize: '1em',
@@ -67,6 +68,13 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
           <ListItem button key="home">
             <RadioIcon style={{ marginRight: '10px' }} />{' '}
             <Typography variant="h6"> Home </Typography>
+          </ListItem>
+        </StyledLink>
+
+        <StyledLink id="schedule" className="menu-item" to="/schedule">
+          <ListItem button key="schedule">
+            <CalendarIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Kajian Rutin</Typography>
           </ListItem>
         </StyledLink>
 

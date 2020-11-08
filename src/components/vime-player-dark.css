@@ -116,6 +116,6 @@ vime-player.mobile {
   --vm-menu-control-padding: 12px calc(var(--vm-control-padding) * 2);
 }
 vime-player.audio {
-  --vm-controls-bg: transparent;
+  --vm-controls-bg: var(--vm-color-dark);
   --vm-settings-max-height: 275px;
 }

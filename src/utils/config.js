@@ -29,6 +29,51 @@ const cfg = {
     telegram: 'https://t.me/AudioThalabIlmuSyar_i',
     youtube: 'https://www.youtube.com/raihsurga',
   },
+  schedule: [
+    {
+      hari: "Senin",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Selasa",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Rabu",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Kamis",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Jumat",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Sabtu",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Ahad",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+  ]
+
 }
 
 export default cfg
