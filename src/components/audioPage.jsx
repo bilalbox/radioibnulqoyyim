@@ -15,6 +15,7 @@ import {
   Tab,
   Tabs,
   Typography,
+  useMediaQuery,
 } from '@material-ui/core'
 import { Radio as RadioIcon, List as ListIcon } from '@material-ui/icons'
 import store from 'store/dist/store.modern'
@@ -28,8 +29,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '60vw',
-    '@media (max-width: 800px)': {
+    width: '20vw',
+    '@media (max-width: 1300px)': {
+      width: '30vw',
+    },
+    '@media (max-width: 500px)': {
       width: '100vw',
       backgroundColor: theme.palette.background.default,
     },
@@ -39,13 +43,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cover: {
-    width: '10vw',
-    height: '10vw',
-    marginBottom: '3vw',
-    '@media (max-width: 800px)': {
-      width: '20vw',
-      height: '20vw',
-      marginBottom: '1vw',
+    width: '20vw',
+    height: '20vw',
+    '@media (max-width: 1300px)': {
+      width: '30vw',
+      height: '30vw',
+    },
+    '@media (max-width: 500px)': {
+      width: '60vw',
+      height: '60vw',
     },
   },
   content: {
@@ -74,6 +80,7 @@ let parser = new Parser()
 
 export default function AudioPage() {
   const classes = useStyles()
+  const matches = useMediaQuery('(min-width: 600px)')
   const [podcasts, setPodcasts] = React.useState([])
   const [currentTab, setCurrentTab] = React.useState(0)
   const [nowPlayingName, setNowPlayingName] = React.useState('')
@@ -113,13 +120,12 @@ export default function AudioPage() {
 
   return (
     <Container>
-      <CardMedia className={classes.cover} image={audioImage} />
-
+      {matches && <CardMedia className={classes.cover} image={audioImage} />}
       <Card className={classes.root}>
         {audioInfo && (
           <>
             <CardContent>
-              <Typography variant="h6" align="center">
+              <Typography variant={matches ? 'h5' : 'body2'} align="center">
                 {audioTitle}
               </Typography>
             </CardContent>
@@ -131,7 +137,7 @@ export default function AudioPage() {
               }}
             >
               <Marquee direction="left" delay={0} speed={0.02}>
-                <Typography variant="h6" component="span">
+                <Typography variant={matches ? 'h5' : 'body2'} component="span">
                   {nowPlayingName}
                 </Typography>
               </Marquee>
@@ -149,7 +155,7 @@ export default function AudioPage() {
               }}
             >
               <Marquee direction="left" delay={0} speed={0.02}>
-                <Typography variant="h6" component="span">
+                <Typography variant={matches ? 'h5' : 'body2'} component="span">
                   {audioTitle}
                 </Typography>
               </Marquee>
@@ -158,7 +164,6 @@ export default function AudioPage() {
         )}
         <AudioPlayer audioSource={audioSource} />
       </Card>
-
       <div className={classes.controls}>
         <Tabs
           value={currentTab}
