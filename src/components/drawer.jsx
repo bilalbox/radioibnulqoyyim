@@ -9,14 +9,13 @@ import {
   List,
   ListItem,
   Toolbar,
-  Switch,
   Typography,
 } from '@material-ui/core'
 import {
   Menu as MenuIcon,
   Info as InfoIcon,
-  Brightness2 as MoonIcon,
-  Brightness4 as SunIcon,
+  InvertColorsTwoTone,
+  InvertColorsOffTwoTone,
   Radio as RadioIcon,
   CalendarToday as CalendarIcon,
 } from '@material-ui/icons'
@@ -89,17 +88,10 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
       <List>
         <ListItem button key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
-            <SunIcon color={darkMode ? 'disabled' : 'inherit'} />
-            <Switch
-              checked={darkMode}
-              label="Dark Mode"
-              size="small"
-              color="primary"
-              onChange={() => toggleDarkMode()}
-              name="darkMode"
-              inputProps={{ 'aria-label': 'primary switch' }}
-            />
-            <MoonIcon color={darkMode ? 'inherit' : 'disabled'} />
+            <IconButton onClick={() => toggleDarkMode()}>
+              {darkMode && <InvertColorsTwoTone />}
+              {!darkMode && <InvertColorsOffTwoTone />}
+            </IconButton>
           </div>
         </ListItem>
       </List>

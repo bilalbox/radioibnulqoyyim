@@ -15,6 +15,8 @@ module.exports = {
       },
     },
     `gatsby-plugin-svgr-svgo`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

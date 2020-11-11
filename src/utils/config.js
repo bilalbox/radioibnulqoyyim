@@ -1,4 +1,5 @@
 import Logo from '../images/logo.svg'
+
 const cfg = {
   urls: {
     email: 'mailto:salafybpp@gmail.com',
@@ -31,6 +32,18 @@ const cfg = {
   },
   schedule: [
     {
+      hari: "Sabtu",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
+      hari: "Ahad",
+      buku: "Bulughul Maram",
+      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
+      pemateri: "Al-Ustadz Askari Al-Bugisi"
+    },
+    {
       hari: "Senin",
       buku: "Bulughul Maram",
       penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
@@ -56,18 +69,6 @@ const cfg = {
     },
     {
       hari: "Jumat",
-      buku: "Bulughul Maram",
-      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
-      pemateri: "Al-Ustadz Askari Al-Bugisi"
-    },
-    {
-      hari: "Sabtu",
-      buku: "Bulughul Maram",
-      penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
-      pemateri: "Al-Ustadz Askari Al-Bugisi"
-    },
-    {
-      hari: "Ahad",
       buku: "Bulughul Maram",
       penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
       pemateri: "Al-Ustadz Askari Al-Bugisi"
