@@ -121,7 +121,7 @@ export default function AudioPage() {
   React.useEffect(() => {
     if (audioInfo)
       axios
-        .get(audioInfo)
+        .get(audioInfo, { timeout: 10000 })
         .then((res) => setNowPlayingName(res.data))
         .catch((err) => console.error('Error: ', err))
   }, [audioInfo])

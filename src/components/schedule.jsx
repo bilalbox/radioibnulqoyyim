@@ -1,30 +1,22 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { Book } from '@material-ui/icons'
 import {
-  Timeline,
-  TimelineDot,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineOppositeContent,
-} from '@material-ui/lab'
-import { Container, Paper, Typography } from '@material-ui/core'
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Typography,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
+  card: {
     padding: '6px 16px',
-    '&:hover': {
-      border: '10',
-      borderRadius: 5,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      borderColor: theme.palette.primary.main,
-    },
+    margin: '10px',
+    display: 'flex',
   },
   day: {
     '&:hover': {
@@ -39,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Schedule() {
   const classes = useStyles()
   const {
-    file: { childImageSharp },
+    file: { childImageSharp: dawrohLogo },
   } = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
@@ -61,7 +53,7 @@ export default function Schedule() {
       maxWidth="sm"
     >
       <Img
-        fluid={childImageSharp.fluid}
+        fluid={dawrohLogo.fluid}
         style={{
           width: '30vw',
           height: '30vw',
@@ -70,46 +62,37 @@ export default function Schedule() {
         }}
       />
 
-      <Paper
-        elevation={5}
-        style={{
-          width: '30vw',
-          borderRadius: '10px',
-          marginBottom: '50px',
-        }}
-      >
-        <Typography variant="h4" color="primary" align="center">
-          Kajian Rutin
-        </Typography>
-        <Timeline align="left">
-          {cfg.schedule.map((c) => {
-            return (
-              <TimelineItem key={c.buku}>
-                <TimelineOppositeContent>
-                  <Typography variant="h5" className={classes.day}>
-                    {c.hari}
-                  </Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineDot>
-                    <Book color="secondary" />
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                  <Typography variant="h6" color="primary">
-                    {c.buku}
-                  </Typography>
-                  <Typography variant="body2">{c.penulis}</Typography>
-                  <Typography variant="caption" color="textSecondary">
-                    {c.pemateri}
-                  </Typography>
-                </TimelineContent>
-              </TimelineItem>
-            )
-          })}
-        </Timeline>
-      </Paper>
+      <Typography variant="h4" color="primary" align="center">
+        Kajian Rutin
+      </Typography>
+      {cfg.schedule.map((c) => {
+        return (
+          <Card key={c.buku} elevation={5} className={classes.card}>
+            <CardMedia>
+              <Img
+                fluid={dawrohLogo.fluid}
+                style={{
+                  width: '10vw',
+                  height: '10vw',
+                  borderRadius: '10px',
+                }}
+              />
+            </CardMedia>
+            <CardContent>
+              <Typography variant="h5" className={classes.day}>
+                {c.hari}
+              </Typography>
+              <Typography variant="h6" color="primary">
+                {c.buku}
+              </Typography>
+              <Typography variant="body2">{c.penulis}</Typography>
+              <Typography variant="caption" color="textSecondary">
+                {c.pemateri}
+              </Typography>
+            </CardContent>
+          </Card>
+        )
+      })}
     </Container>
   )
 }

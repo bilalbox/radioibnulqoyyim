@@ -14,8 +14,8 @@ import {
 import {
   Menu as MenuIcon,
   Info as InfoIcon,
-  InvertColorsTwoTone,
-  InvertColorsOffTwoTone,
+  WbSunny,
+  Brightness3,
   Radio as RadioIcon,
   CalendarToday as CalendarIcon,
 } from '@material-ui/icons'
@@ -86,11 +86,13 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
       </List>
       <Divider />
       <List>
-        <ListItem button key="darkMode" style={{ justifyContent: 'center' }}>
+        <ListItem key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
             <IconButton onClick={() => toggleDarkMode()}>
-              {darkMode && <InvertColorsTwoTone />}
-              {!darkMode && <InvertColorsOffTwoTone />}
+              {darkMode && <WbSunny fontSize="large" />}
+              {!darkMode && (
+                <Brightness3 fontSize="large" style={{ color: 'white' }} />
+              )}
             </IconButton>
           </div>
         </ListItem>
