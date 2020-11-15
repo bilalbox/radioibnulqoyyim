@@ -84,12 +84,12 @@ export default function AudioPage() {
   const matches = useMediaQuery('(min-width: 600px)')
   const [podcasts, setPodcasts] = React.useState([])
   const [currentTab, setCurrentTab] = React.useState(0)
-  const [nowPlayingName, setNowPlayingName] = React.useState('')
+  const [nowPlayingStats, setNowPlayingStats] = React.useState('LOADING...')
   const [audioSource, setAudioSource] = React.useState(
-    cfg.urls.radio[0].audioUrl
+    cfg.urls.radio[2].audioUrl
   )
-  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
-  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
+  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[2].audioInfo)
+  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[2].title)
   const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
 
   const LoadableAudioPlayer = Loadable({
@@ -121,9 +121,15 @@ export default function AudioPage() {
   React.useEffect(() => {
     if (audioInfo)
       axios
-        .get(audioInfo, { timeout: 10000 })
-        .then((res) => setNowPlayingName(res.data))
-        .catch((err) => console.error('Error: ', err))
+        .get(audioInfo, { timeout: 10000, origin: 'anonymous' })
+        .then((res) => setNowPlayingStats(res.data))
+        .catch((err) => {
+          setNowPlayingStats({
+            songtitle: 'TIDAK DAPAT INFO DARI SALURAN...',
+            currentlisteners: 0,
+          })
+          console.error('Error: ', err)
+        })
   }, [audioInfo])
 
   return (
@@ -132,11 +138,6 @@ export default function AudioPage() {
         {matches && <CardMedia className={classes.cover} image={audioImage} />}
         {audioInfo && (
           <>
-            <CardContent>
-              <Typography variant={matches ? 'h6' : 'body1'} align="center">
-                {audioTitle}
-              </Typography>
-            </CardContent>
             <CardContent
               style={{
                 width: '100%',
@@ -150,8 +151,16 @@ export default function AudioPage() {
                 component="span"
               >
                 <Marquee direction="left" delay={0}>
-                  {nowPlayingName}
+                  {nowPlayingStats.songtitle}
                 </Marquee>
+              </Typography>
+              <Typography
+                variant="caption"
+                color="primary"
+                align="center"
+                component="p"
+              >
+                Listening: {nowPlayingStats.currentlisteners}
               </Typography>
             </CardContent>
           </>
