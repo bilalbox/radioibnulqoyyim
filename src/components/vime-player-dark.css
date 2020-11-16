@@ -97,7 +97,7 @@ vime-player {
   --vm-menu-item-check-icon-width: 10px;
   --vm-menu-item-check-icon-height: 10px;
   --vm-menu-item-divider-color: var(--vm-color-white-100);
-  --vm-settings-width: 275px;
+  --vm-settings-width: 300px;
   --vm-settings-padding: 8px;
   --vm-settings-max-height: 65%;
   --vm-settings-border-radius: 2px;
@@ -117,5 +117,5 @@ vime-player.mobile {
 }
 vime-player.audio {
   --vm-controls-bg: var(--vm-color-dark);
-  --vm-settings-max-height: 275px;
+  --vm-settings-max-height: 300px;
 }

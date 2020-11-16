@@ -1,17 +1,15 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/core/styles'
-import store from 'store/dist/store.modern'
-import { isUndefined } from 'lodash'
 import { lightTheme, darkTheme } from '../utils/theme'
 import Drawer from './drawer'
 
 export default function Layout({ children }) {
-  const darkmode = store.get('darkmode')
+  const darkmode = JSON.parse(localStorage.darkmode || false)
   const [darkMode, setDarkMode] = React.useState(
-    isUndefined(darkmode) ? false : darkmode
+    darkmode === 'undefined' ? false : darkmode
   )
   const toggleDarkMode = () => {
-    store.set('darkmode', !darkMode)
+    localStorage.darkmode = JSON.stringify(!darkMode)
     setDarkMode(!darkMode)
   }
   return (

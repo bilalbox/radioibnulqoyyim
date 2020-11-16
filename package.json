@@ -30,7 +30,6 @@
     "gatsby-source-filesystem": "^2.4.1",
     "gatsby-transformer-sharp": "^2.5.21",
     "gsap": "^3.2.4",
-    "lodash": "^4.17.15",
     "polished": "^3.5.2",
     "preact": "^10.5.5",
     "preact-render-to-string": "^5.1.11",
@@ -42,8 +41,6 @@
     "react-helmet": "^5.2.1",
     "react-loadable": "^5.5.0",
     "react-typography": "^0.16.19",
-    "rss-parser": "^3.9.0",
-    "store": "^2.0.12",
     "typography": "^0.16.19"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { VimePlayer, VimeAudio, VimeDefaultUi } from '@vime/react'
-import '@vime/core/themes/default.css'
+import './vime-player-dark.css'
+import './vime-player-light.css'
 
 export default function AudioPlayer({ audioSource }) {
   return (
@@ -9,7 +10,7 @@ export default function AudioPlayer({ audioSource }) {
         <VimeAudio>
           <source src={audioSource} />
         </VimeAudio>
-        <VimeDefaultUi noSkeleton style={{ width: '100%' }} />
+        <VimeDefaultUi noSkeleton />
       </VimePlayer>
     </div>
   )
