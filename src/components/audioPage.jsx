@@ -84,12 +84,14 @@ export default function AudioPage() {
   const matches = useMediaQuery('(min-width: 600px)')
   const [podcasts, setPodcasts] = React.useState([])
   const [currentTab, setCurrentTab] = React.useState(0)
-  const [nowPlayingStats, setNowPlayingStats] = React.useState('LOADING...')
+  const [nowPlayingStats, setNowPlayingStats] = React.useState({
+    songtitle: 'LOADING...',
+  })
   const [audioSource, setAudioSource] = React.useState(
-    cfg.urls.radio[2].audioUrl
+    cfg.urls.radio[0].audioUrl
   )
-  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[2].audioInfo)
-  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[2].title)
+  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
+  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
   const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
 
   const LoadableAudioPlayer = Loadable({
@@ -122,13 +124,15 @@ export default function AudioPage() {
     if (audioInfo)
       axios
         .get(audioInfo, { timeout: 10000, origin: 'anonymous' })
-        .then((res) => setNowPlayingStats(res.data))
-        .catch((err) => {
+        .then((res) => {
+          setNowPlayingStats(res.data)
+        })
+        .catch((error) => {
+          console.error('Error: ', error)
           setNowPlayingStats({
-            songtitle: 'TIDAK DAPAT INFO DARI SALURAN...',
+            songtitle: '',
             currentlisteners: 0,
           })
-          console.error('Error: ', err)
         })
   }, [audioInfo])
 
@@ -151,7 +155,7 @@ export default function AudioPage() {
                 component="span"
               >
                 <Marquee direction="left" delay={0}>
-                  {nowPlayingStats.songtitle}
+                  {nowPlayingStats.songtitle || `${audioTitle} OFFLINE...`}
                 </Marquee>
               </Typography>
               <Typography
@@ -160,7 +164,7 @@ export default function AudioPage() {
                 align="center"
                 component="p"
               >
-                Listening: {nowPlayingStats.currentlisteners}
+                Listeners: {nowPlayingStats.currentlisteners}
               </Typography>
             </CardContent>
           </>

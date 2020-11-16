@@ -38,7 +38,7 @@ const cfg = {
       pemateri: "Al-Ustadz Askari Al-Bugisi"
     },
     {
-      hari: "Ahad",
+      hari: "Minggu",
       buku: "Bulughul Maram",
       penulis: "Al-Hafizh Ibnu Hajar Al-Asqalani",
       pemateri: "Al-Ustadz Askari Al-Bugisi"

@@ -14,13 +14,12 @@ import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    padding: '6px 16px',
+    padding: '0 16px',
     margin: '10px',
     display: 'flex',
-  },
-  day: {
+    alignItems: 'center',
     '&:hover': {
-      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.background.default,
     },
   },
   secondaryTail: {
@@ -30,13 +29,60 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Schedule() {
   const classes = useStyles()
-  const {
-    file: { childImageSharp: dawrohLogo },
-  } = useStaticQuery(graphql`
+  const images = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
+      daurohLogo: file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 500, quality: 100) {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Senin: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Selasa: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Rabu: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Kamis: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Jumat: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Sabtu: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      Minggu: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -53,7 +99,7 @@ export default function Schedule() {
       maxWidth="sm"
     >
       <Img
-        fluid={dawrohLogo.fluid}
+        fluid={images.daurohLogo.childImageSharp.fluid}
         style={{
           width: '30vw',
           height: '30vw',
@@ -62,26 +108,24 @@ export default function Schedule() {
         }}
       />
 
-      <Typography variant="h4" color="primary" align="center">
+      <Typography variant="h3" color="primary" align="center">
         Kajian Rutin
       </Typography>
       {cfg.schedule.map((c) => {
         return (
-          <Card key={c.buku} elevation={5} className={classes.card}>
+          <Card key={c.hari} elevation={5} className={classes.card}>
             <CardMedia>
               <Img
-                fluid={dawrohLogo.fluid}
+                fluid={images[c.hari].childImageSharp.fluid}
                 style={{
-                  width: '10vw',
-                  height: '10vw',
+                  width: '15vw',
+                  height: '15vw',
                   borderRadius: '10px',
                 }}
               />
             </CardMedia>
             <CardContent>
-              <Typography variant="h5" className={classes.day}>
-                {c.hari}
-              </Typography>
+              <Typography variant="h4">{c.hari}</Typography>
               <Typography variant="h6" color="primary">
                 {c.buku}
               </Typography>
