@@ -14,10 +14,11 @@ import {
 import {
   Menu as MenuIcon,
   Info as InfoIcon,
-  WbSunny,
-  Brightness3,
+  WbSunny as SunIcon,
+  Brightness3 as MoonIcon,
   Radio as RadioIcon,
   CalendarToday as CalendarIcon,
+  YouTube,
 } from '@material-ui/icons'
 import { styled, makeStyles } from '@material-ui/core/styles'
 
@@ -70,17 +71,24 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
           </ListItem>
         </StyledLink>
 
+        <StyledLink id="videos" className="menu-item" to="/videos">
+          <ListItem button key="videos">
+            <YouTube style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Video </Typography>
+          </ListItem>
+        </StyledLink>
+
         <StyledLink id="schedule" className="menu-item" to="/schedule">
           <ListItem button key="schedule">
             <CalendarIcon style={{ marginRight: '10px' }} />{' '}
-            <Typography variant="h6"> Kajian Rutin</Typography>
+            <Typography variant="h6"> Kajian Rutin </Typography>
           </ListItem>
         </StyledLink>
 
         <StyledLink id="about" className="menu-item" to="/about">
           <ListItem button key="about">
             <InfoIcon style={{ marginRight: '10px' }} />{' '}
-            <Typography variant="h6"> Tentang</Typography>
+            <Typography variant="h6"> Tentang </Typography>
           </ListItem>
         </StyledLink>
       </List>
@@ -89,9 +97,9 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
         <ListItem key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
             <IconButton onClick={() => toggleDarkMode()}>
-              {darkMode && <WbSunny fontSize="large" />}
+              {darkMode && <SunIcon fontSize="large" />}
               {!darkMode && (
-                <Brightness3 fontSize="large" style={{ color: 'white' }} />
+                <MoonIcon fontSize="large" style={{ color: 'white' }} />
               )}
             </IconButton>
           </div>

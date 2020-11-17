@@ -26,11 +26,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     '@media (max-width: 1300px)': {
       width: '30vw',
-      backgroundColor: theme.palette.background.default,
     },
     '@media (max-width: 600px)': {
       width: '100vw',
-      backgroundColor: theme.palette.background.default,
     },
   },
   details: {
