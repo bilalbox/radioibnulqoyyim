@@ -1,75 +1,58 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import AppBar from "@material-ui/core/AppBar"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import Divider from "@material-ui/core/Divider"
-import Drawer from "@material-ui/core/Drawer"
-import IconButton from "@material-ui/core/IconButton"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import MenuIcon from "@material-ui/icons/Menu"
-import Toolbar from "@material-ui/core/Toolbar"
+import React from 'react'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import {
-  RiRecordMailFill,
-  RiInformationFill,
-  RiMoonFill,
-  RiSunFill,
-} from "react-icons/ri"
-import { GoRadioTower } from "react-icons/go"
-import { ThemeToggler } from "gatsby-plugin-dark-mode"
-import Switch from "@material-ui/core/Switch"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import styled from "styled-components"
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  Toolbar,
+  Typography,
+} from '@material-ui/core'
+import {
+  Menu as MenuIcon,
+  Info as InfoIcon,
+  WbSunny as SunIcon,
+  Brightness3 as MoonIcon,
+  Radio as RadioIcon,
+  CalendarToday as CalendarIcon,
+  // YouTube,
+} from '@material-ui/icons'
+import { styled, makeStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 180
-const StyledLink = styled(Link)`
-  color: var(--textTitle);
-  font-size: 1.4em;
-  text-left: center;
-  text-decoration: none;
-  text-align: left;
-  padding: 1;
-
-  &:hover {
-    color: var(--hover);
-  }
-`
-
-const TitleBar = styled.h2`
-  color: var(--textTitle);
-  font-size: 1.4em;
-  text-align: center;
-  padding: 1;
-`
-
-const MyDrawer = styled(Drawer)`
-  .MuiDrawer-paper {
-    background-color: var(--bg);
-  }
-`
+const StyledLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  fontSize: '1em',
+  textDecoration: 'none',
+  padding: theme.spacing(10),
+}))
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  root: {
+    display: 'flex',
+  },
+  toolbar: theme.mixins.toolbar,
+  titleBar: {
+    paddingTop: '0',
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: theme.palette.primary.dark,
+  },
 }))
 
-function ResponsiveDrawer(props) {
-  const { window } = props
+function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
   const classes = useStyles()
-  const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -78,50 +61,47 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      <div className={[classes.toolbar, classes.drawerPaper]} />
       <Divider />
       <List>
-        <ListItem button key="radio">
-          <StyledLink id="radio" className="menu-item" to="/">
-            <GoRadioTower /> Radio
-          </StyledLink>
-        </ListItem>
+        <StyledLink id="home" className="menu-item" to="/">
+          <ListItem button key="home">
+            <RadioIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Home </Typography>
+          </ListItem>
+        </StyledLink>
 
-        <ListItem button key="archive">
-          <StyledLink id="archive" className="menu-item" to="/archive">
-            <RiRecordMailFill /> Arsip
-          </StyledLink>
-        </ListItem>
+        {/* <StyledLink id="videos" className="menu-item" to="/videos">
+          <ListItem button key="videos">
+            <YouTube style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Video </Typography>
+          </ListItem>
+        </StyledLink> */}
 
-        <ListItem button key="about">
-          <StyledLink id="about" className="menu-item" to="/about">
-            <RiInformationFill /> Tentang
-          </StyledLink>
-        </ListItem>
+        <StyledLink id="schedule" className="menu-item" to="/schedule">
+          <ListItem button key="schedule">
+            <CalendarIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Kajian Rutin </Typography>
+          </ListItem>
+        </StyledLink>
+
+        <StyledLink id="about" className="menu-item" to="/about">
+          <ListItem button key="about">
+            <InfoIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Tentang </Typography>
+          </ListItem>
+        </StyledLink>
       </List>
       <Divider />
       <List>
-        <ListItem button key="darkMode" style={{ justifyContent: "center" }}>
+        <ListItem key="darkMode" style={{ justifyContent: 'center' }}>
           <div>
-            <RiSunFill />
-            <ThemeToggler>
-              {({ theme, toggleTheme }) => (
-                <label>
-                  <Switch
-                    checked={theme === "dark"}
-                    label="Dark Mode"
-                    size="small"
-                    color="primary"
-                    onChange={(e) =>
-                      toggleTheme(e.target.checked ? "dark" : "light")
-                    }
-                    name="darkMode"
-                    inputProps={{ "aria-label": "primary checkbox" }}
-                  />
-                </label>
+            <IconButton onClick={() => toggleDarkMode()}>
+              {darkMode && <SunIcon fontSize="large" />}
+              {!darkMode && (
+                <MoonIcon fontSize="large" style={{ color: 'white' }} />
               )}
-            </ThemeToggler>
-            <RiMoonFill />
+            </IconButton>
           </div>
         </ListItem>
       </List>
@@ -158,14 +138,13 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <TitleBar>{siteMetadata.title}</TitleBar>
+          <h2 className={classes.titleBar}>{siteMetadata.title}</h2>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="menu">
-        <MyDrawer
+        <Drawer
           container={container}
           variant="temporary"
-          anchor={theme.direction === "rtl" ? "right" : "left"}
           open={mobileOpen}
           onClose={handleDrawerToggle}
           classes={{
@@ -176,7 +155,7 @@ function ResponsiveDrawer(props) {
           }}
         >
           {drawer}
-        </MyDrawer>
+        </Drawer>
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />

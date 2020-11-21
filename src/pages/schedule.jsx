@@ -3,9 +3,9 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import About from '../components/about'
+import Schedule from '../components/schedule'
 
-export default function AboutPage() {
+export default function SchedulePage() {
   const {
     site: { siteMetadata },
   } = useStaticQuery(graphql`
@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <Layout>
       <SEO title={siteMetadata.title} />
-      <About />
+      <Schedule />
     </Layout>
   )
 }

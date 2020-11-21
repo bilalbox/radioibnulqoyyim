@@ -1,5 +1,4 @@
-import React from "react"
-import cfg from "../utils/config"
+import React from 'react'
 
 export default function NotFound() {
   return (

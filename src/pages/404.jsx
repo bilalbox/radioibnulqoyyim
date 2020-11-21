@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import NotFound from "../components/404"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import NotFound from '../components/404'
 
 export default function NotFoundPage() {
   return (

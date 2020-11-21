@@ -3,9 +3,9 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import About from '../components/about'
+import Video from '../components/videoPage'
 
-export default function AboutPage() {
+export default function VideoPage() {
   const {
     site: { siteMetadata },
   } = useStaticQuery(graphql`
@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <Layout>
       <SEO title={siteMetadata.title} />
-      <About />
+      <Video />
     </Layout>
   )
 }

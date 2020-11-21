@@ -1,8 +1,9 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Landing from "../components/landing"
+import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Index from '../components/audioPage'
 
 export default function IndexPage() {
   const {
@@ -19,9 +20,9 @@ export default function IndexPage() {
   `)
 
   return (
-    <Layout id="page-wrap">
+    <Layout>
       <SEO title={siteMetadata.title} />
-      <Landing />
+      <Index />
     </Layout>
   )
 }
