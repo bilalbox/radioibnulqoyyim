@@ -103,57 +103,31 @@ export default function AudioPage() {
     <Container>
       <div className={classes.root}>
         {matches && <CardMedia className={classes.cover} image={audioImage} />}
-        {audioInfo && (
-          <>
-            <CardContent
-              style={{
-                width: '100%',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <Typography
-                variant={matches ? 'h6' : 'body1'}
-                align="center"
-                component="span"
-              >
-                <Marquee direction="left" delay={0}>
-                  {nowPlayingStats.songtitle || `${audioTitle} OFFLINE...`}
-                </Marquee>
-              </Typography>
-              <Typography
-                variant="caption"
-                color="primary"
-                align="center"
-                component="p"
-              >
-                Listeners: {nowPlayingStats.currentlisteners}
-              </Typography>
-            </CardContent>
-          </>
-        )}
-
-        {!audioInfo && (
-          <>
-            <CardContent
-              style={{
-                width: '100%',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <Typography
-                variant={matches ? 'h6' : 'body1'}
-                align="center"
-                component="span"
-              >
-                <Marquee direction="left" delay={0}>
-                  {audioTitle}
-                </Marquee>
-              </Typography>
-            </CardContent>
-          </>
-        )}
+        <CardContent
+          style={{
+            width: '100%',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <Typography
+            variant={matches ? 'h6' : 'body1'}
+            align="center"
+            component="span"
+          >
+            <Marquee direction="left" delay={0} childMargin={50}>
+              {nowPlayingStats.songtitle || `${audioTitle} OFFLINE...`}
+            </Marquee>
+          </Typography>
+          <Typography
+            variant="caption"
+            color="primary"
+            align="center"
+            component="p"
+          >
+            Listeners: {nowPlayingStats.currentlisteners}
+          </Typography>
+        </CardContent>
         <LoadableAudioPlayer audioSource={audioSource} />
       </div>
       <List dense>
