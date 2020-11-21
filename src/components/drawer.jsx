@@ -18,7 +18,7 @@ import {
   Brightness3 as MoonIcon,
   Radio as RadioIcon,
   CalendarToday as CalendarIcon,
-  YouTube,
+  // YouTube,
 } from '@material-ui/icons'
 import { styled, makeStyles } from '@material-ui/core/styles'
 
@@ -71,12 +71,12 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
           </ListItem>
         </StyledLink>
 
-        <StyledLink id="videos" className="menu-item" to="/videos">
+        {/* <StyledLink id="videos" className="menu-item" to="/videos">
           <ListItem button key="videos">
             <YouTube style={{ marginRight: '10px' }} />{' '}
             <Typography variant="h6"> Video </Typography>
           </ListItem>
-        </StyledLink>
+        </StyledLink> */}
 
         <StyledLink id="schedule" className="menu-item" to="/schedule">
           <ListItem button key="schedule">

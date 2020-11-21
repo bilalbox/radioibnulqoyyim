@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 600px)': {
       width: '100vw',
     },
-    '&:hover': {
-      backgroundColor: theme.palette.background.default,
-    },
+    // '&:hover': {
+    //   backgroundColor: theme.palette.background.default,
+    // },
   },
   card: {
     padding: '0 16px',
@@ -65,7 +65,7 @@ export default function Schedule() {
           }
         }
       }
-      MINGGU: file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
+      AHAD: file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
@@ -174,42 +174,33 @@ export default function Schedule() {
                 return (
                   <Card key={c.hari + k.waktu} className={classes.card}>
                     <CardMedia>
-                      <Typography
-                        variant="body1"
-                        color="primary"
-                        align="center"
-                      >
-                        {k.waktu}
-                      </Typography>
-                      {['DHUHUR', 'ASHAR'].includes(k.waktu) && (
-                        <Img
-                          fluid={images[k.waktu].childImageSharp.fluid}
-                          style={{
-                            width: '10vw',
-                            height: '10vw',
-                            borderRadius: '10px',
-                          }}
-                        />
+                      {k.waktu.slice(0, 7) === 'MAGHRIB' && (
+                        <a href={k.url}>
+                          <Img
+                            fluid={images[c.hari].childImageSharp.fluid}
+                            style={{
+                              width: '10vw',
+                              height: '10vw',
+                              borderRadius: '10px',
+                            }}
+                          />
+                        </a>
                       )}
-                      {k.waktu === 'MAGHRIB' && (
-                        <Img
-                          fluid={images[c.hari].childImageSharp.fluid}
-                          style={{
-                            width: '10vw',
-                            height: '10vw',
-                            borderRadius: '10px',
-                          }}
-                        />
+                      {['DHUHUR', 'ASHAR'].includes(k.waktu) && (
+                        <a href={k.url}>
+                          <Img
+                            fluid={images[k.waktu].childImageSharp.fluid}
+                            style={{
+                              width: '10vw',
+                              height: '10vw',
+                              borderRadius: '10px',
+                            }}
+                          />
+                        </a>
                       )}
                     </CardMedia>
                     <CardContent>
-                      <Typography
-                        variant="body1"
-                        color="primary"
-                        align="center"
-                      >
-                        {k.buku}
-                      </Typography>
+                      <Typography variant="body2">WAKTU: {k.waktu}</Typography>
                       <Typography variant="body2">
                         PENULIS: {k.penulis}
                       </Typography>
