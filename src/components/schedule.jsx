@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 600px)': {
       width: '100vw',
     },
-    // '&:hover': {
-    //   backgroundColor: theme.palette.background.default,
-    // },
   },
   card: {
     padding: '0 16px',
@@ -33,16 +30,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  link: {
+    color: theme.palette.primary.main,
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+  },
   secondaryTail: {
     backgroundColor: theme.palette.secondary.main,
   },
   root: {
     width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -145,11 +148,27 @@ export default function Schedule() {
           width: '30vw',
           height: '30vw',
           borderRadius: '10px',
-          marginBottom: '50px',
         }}
       />
+      <Typography
+        variant="h6"
+        color="primary"
+        align="center"
+        style={{
+          marginBottom: '30px',
+        }}
+      >
+        POSTER DAUROH
+      </Typography>
 
-      <Typography variant="h3" color="primary" align="center">
+      <Typography
+        variant="h4"
+        color="primary"
+        align="center"
+        style={{
+          marginBottom: '10px',
+        }}
+      >
         KAJIAN RUTIN
       </Typography>
       {cfg.schedule.map((c) => {
@@ -175,37 +194,44 @@ export default function Schedule() {
                   <Card key={c.hari + k.waktu} className={classes.card}>
                     <CardMedia>
                       {k.waktu.slice(0, 7) === 'MAGHRIB' && (
-                        <a href={k.url}>
-                          <Img
-                            fluid={images[c.hari].childImageSharp.fluid}
-                            style={{
-                              width: '10vw',
-                              height: '10vw',
-                              borderRadius: '10px',
-                            }}
-                          />
-                        </a>
+                        <Img
+                          fluid={images[c.hari].childImageSharp.fluid}
+                          style={{
+                            width: '10vw',
+                            height: '10vw',
+                            borderRadius: '10px',
+                          }}
+                        />
                       )}
                       {['DHUHUR', 'ASHAR'].includes(k.waktu) && (
-                        <a href={k.url}>
-                          <Img
-                            fluid={images[k.waktu].childImageSharp.fluid}
-                            style={{
-                              width: '10vw',
-                              height: '10vw',
-                              borderRadius: '10px',
-                            }}
-                          />
-                        </a>
+                        <Img
+                          fluid={images[k.waktu].childImageSharp.fluid}
+                          style={{
+                            width: '10vw',
+                            height: '10vw',
+                            borderRadius: '10px',
+                          }}
+                        />
                       )}
                     </CardMedia>
                     <CardContent>
-                      <Typography variant="body2">WAKTU: {k.waktu}</Typography>
+                      <Typography variant="h6" color="primary">
+                        JUDUL: {k.buku}
+                      </Typography>
+                      <Typography variant="body2">
+                        WAKTU: BA'DA {k.waktu}
+                      </Typography>
                       <Typography variant="body2">
                         PENULIS: {k.penulis}
                       </Typography>
-                      <Typography variant="caption" color="textSecondary">
+                      <Typography variant="body2">
                         PEMATERI: {k.pemateri}
+                      </Typography>
+                      <Typography variant="body2">
+                        UNDUH BUKU{' '}
+                        <a href={k.url} className={classes.link}>
+                          DISINI
+                        </a>
                       </Typography>
                     </CardContent>
                   </Card>

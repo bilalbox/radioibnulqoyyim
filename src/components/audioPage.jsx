@@ -86,7 +86,7 @@ export default function AudioPage() {
   React.useEffect(() => {
     if (audioInfo)
       axios
-        .get(audioInfo, { timeout: 10000, origin: 'anonymous' })
+        .get(audioInfo, { timeout: 15000, origin: 'anonymous' })
         .then((res) => {
           setNowPlayingStats(res.data)
         })
