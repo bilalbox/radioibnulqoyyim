@@ -32,65 +32,65 @@ const cfg = {
   },
   schedule: [
     {
-      hari: "Minggu",
+      hari: "MINGGU",
       kajian: [
         {
           waktu: "DHUHUR",
-          buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-          penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
+          buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+          penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
         },
         {
           waktu: "ASHAR",
           buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
           penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         },
         {
           waktu: "MAGHRIB",
           buku: "KIAT-KIAT HIDUP BAHAGIA",
           penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         }
       ]
     },
     {
-      hari: "Senin",
+      hari: "SENIN",
       kajian: [
         {
           waktu: "DHUHUR",
-          buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-          penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
+          buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+          penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
         },
         {
           waktu: "ASHAR",
           buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
           penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         },
         {
           waktu: "MAGHRIB",
           buku: "SHAHIH BUKHARI",
-          penulis: "AL-IMAM MOHAMMED BIN ISMA'IL BIN IBRAHIM AL-BUKHARI رحمه الله",
+          penulis: "AL-IMAM MOHAMMED BIN ISMA'IL AL-BUKHARI رحمه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
         }
       ]
     },
     {
-      hari: "Selasa",
+      hari: "SELASA",
       kajian: [
         {
           waktu: "DHUHUR",
-          buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-          penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
+          buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+          penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
         },
         {
           waktu: "ASHAR",
           buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
           penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         },
         {
           waktu: "MAGHRIB",
@@ -101,19 +101,19 @@ const cfg = {
       ]
     },
     {
-      hari: "Rabu",
+      hari: "RABU",
       kajian: [
         {
           waktu: "DHUHUR",
-          buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-          penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
+          buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+          penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
         },
         {
           waktu: "ASHAR",
           buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
           penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         },
         {
           waktu: "MAGHRIB",
@@ -124,70 +124,58 @@ const cfg = {
       ]
     },
     {
-      hari: "Kamis",
+      hari: "KAMIS",
       kajian: [{
         waktu: "DHUHUR",
-        buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-        penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
+        buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+        penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
         pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
       },
       {
         waktu: "ASHAR",
         buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
         penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-        pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+        pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
       },
       {
         waktu: "MAGHRIB",
-        buku: "AL URJUZAH MI'IYYAH FII DZIKRI HAALI ASYRAFIL BARIYYAh",
-        penulis: "AL-ALLAMAH IBNU ABIL IZZ AL-HANAFY رحمه الله",
+        buku: "AL URJUZAH MI'IYYAH FII DZIKRI HAALI ASYRAFIL BARIYYAH",
+        penulis: "AL-ALLAMAH IBNU ABIL 'IZZ AL-HANAFY رحمه الله",
         pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
       }
       ]
     },
 
     {
-      hari: "Jumat",
+      hari: "JUMAT",
       kajian: [
         {
-          waktu: "DHUHUR",
-          buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-          penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
-          pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
-        },
-        {
-          waktu: "ASHAR",
-          buku: "LIBUR",
-          penulis: "",
-          pemateri: "",
-        },
-        {
           waktu: "MAGHRIB",
-          buku: "LIBUR",
-          penulis: "",
-          pemateri: "",
+          buku: "HUKUM-HUKUM SEPUTAR FIQH ISLAM",
+          penulis: "AL-IMAM SHIHAB UD-DIN IBN HAJAR AL-ʿASQOLANI رحمه الله",
+          pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
         }
       ]
     },
     {
-      hari: "Sabtu",
+      hari: "SABTU",
       kajian: [
         {
           waktu: "DHUHUR",
-          buku: "TUNTUNAN SHALAT-SHALAT SUNNAH",
-          penulis: "ASY SYAIKH DR. MOHAMMAD BIN UMAR BIN SALEM BAZMOOL حفظه الله",
+          buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+          penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
         },
         {
           waktu: "ASHAR",
           buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
           penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "ASY SYAIKH DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         },
         {
           waktu: "MAGHRIB",
-          buku: "SHAHIH AL ADAB AL MUFRAD",
-          penulis: "AL-IMAM MOHAMMED BIN ISMA'IL BIN IBRAHIM AL-BUKHARI رحمه الله",
+          buku: "SHOHIH AL ADAB IL MUFROD",
+          penulis: "AL-IMAM MOHAMMED BIN ISMA'IL AL-BUKHARI رحمه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
         }
       ]

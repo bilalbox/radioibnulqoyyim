@@ -17,6 +17,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
+  accordion: {
+    width: '60vw',
+    '@media (max-width: 600px)': {
+      width: '100vw',
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
   card: {
     padding: '0 16px',
     margin: '10px',
@@ -56,49 +65,63 @@ export default function Schedule() {
           }
         }
       }
-      Senin: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      MINGGU: file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      Selasa: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      SENIN: file(relativePath: { eq: "book_shohihul_bukhori.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      Rabu: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      SELASA: file(relativePath: { eq: "book_fathul_majid.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      Kamis: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      RABU: file(relativePath: { eq: "book_riyadhus_sholihin.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      Jumat: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      KAMIS: file(relativePath: { eq: "book_alurjuzah.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      Sabtu: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      JUMAT: file(relativePath: { eq: "book_bulugh_marom.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      Minggu: file(relativePath: { eq: "book_bulugh_maram.jpg" }) {
+      SABTU: file(relativePath: { eq: "book_shohihul_adabil_mufrod.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      DHUHUR: file(relativePath: { eq: "book_bughyatul_mutathowi.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      ASHAR: file(relativePath: { eq: "book_bahjat_qulubil_abror.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
@@ -127,7 +150,7 @@ export default function Schedule() {
       />
 
       <Typography variant="h3" color="primary" align="center">
-        Kajian Rutin
+        KAJIAN RUTIN
       </Typography>
       {cfg.schedule.map((c) => {
         return (
@@ -135,6 +158,7 @@ export default function Schedule() {
             key={c.hari}
             expanded={expanded === c.hari}
             onChange={handleChange(c.hari)}
+            className={classes.accordion}
           >
             <AccordionSummary
               expandIcon={<ExpandMore />}
@@ -157,14 +181,26 @@ export default function Schedule() {
                       >
                         {k.waktu}
                       </Typography>
-                      <Img
-                        fluid={images[c.hari].childImageSharp.fluid}
-                        style={{
-                          width: '10vw',
-                          height: '10vw',
-                          borderRadius: '10px',
-                        }}
-                      />
+                      {['DHUHUR', 'ASHAR'].includes(k.waktu) && (
+                        <Img
+                          fluid={images[k.waktu].childImageSharp.fluid}
+                          style={{
+                            width: '10vw',
+                            height: '10vw',
+                            borderRadius: '10px',
+                          }}
+                        />
+                      )}
+                      {k.waktu === 'MAGHRIB' && (
+                        <Img
+                          fluid={images[c.hari].childImageSharp.fluid}
+                          style={{
+                            width: '10vw',
+                            height: '10vw',
+                            borderRadius: '10px',
+                          }}
+                        />
+                      )}
                     </CardMedia>
                     <CardContent>
                       <Typography
