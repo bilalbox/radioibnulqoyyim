@@ -10,4 +10,3 @@ Built with:
 
 - [GatsbyJS](https://www.gatsbyjs.org/)
 - [Material-UI](https://material-ui.com/)
-- [VimeJS](https://vimejs.com/)
