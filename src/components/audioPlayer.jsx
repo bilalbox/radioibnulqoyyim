@@ -6,12 +6,7 @@ import './vime-player-light.css'
 export default function AudioPlayer({ audioSource }) {
   return (
     <div>
-      <VimePlayer>
-        <VimeAudio>
-          <source src={audioSource} />
-        </VimeAudio>
-        <VimeDefaultUi noSkeleton />
-      </VimePlayer>
+      <audio src={audioSource} controls autoPlay={false} preload="metadata" />
     </div>
   )
 }

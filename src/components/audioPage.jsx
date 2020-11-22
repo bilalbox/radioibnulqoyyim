@@ -125,7 +125,7 @@ export default function AudioPage() {
             align="center"
             component="p"
           >
-            Listeners: {nowPlayingStats.currentlisteners}
+            Pendengar: {nowPlayingStats.currentlisteners}
           </Typography>
         </CardContent>
         <LoadableAudioPlayer audioSource={audioSource} />
