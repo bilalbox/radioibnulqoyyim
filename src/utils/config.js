@@ -31,25 +31,25 @@ const cfg = {
     youtube: 'https://www.youtube.com/raihsurga',
   },
   schedule: [
-    {
-      hari: "HARIAN",
-      kajian: [
-        {
-          waktu: "DHUHUR",
-          buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
-          url: "https://ia800301.us.archive.org/14/items/waq7551/7551.pdf",
-          penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
-          pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
-        },
-        {
-          waktu: "ASHAR",
-          buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
-          url: "https://ia801304.us.archive.org/26/items/FP132128/132128.pdf",
-          penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
-          pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
-        },
-      ]
-    },
+    // {
+    //   hari: "HARIAN",
+    //   kajian: [
+    //     {
+    //       waktu: "DHUHUR",
+    //       buku: "TUNTUNAN SHOLAT-SHOLAT SUNNAH",
+    //       url: "https://ia800301.us.archive.org/14/items/waq7551/7551.pdf",
+    //       penulis: "SY. DR. MOHAMMAD BIN 'UMAR BAZMUL حفظه الله",
+    //       pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله",
+    //     },
+    //     {
+    //       waktu: "ASHAR",
+    //       buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
+    //       url: "https://ia801304.us.archive.org/26/items/FP132128/132128.pdf",
+    //       penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
+    //       pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
+    //     },
+    //   ]
+    // },
     {
       hari: "AHAD",
       kajian: [
