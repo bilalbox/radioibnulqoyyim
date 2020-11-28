@@ -117,7 +117,7 @@ export default function Schedule() {
           }
         }
       }
-      DHUHUR: file(relativePath: { eq: "book_bughyatul_mutathowi.jpg" }) {
+      DHUHUR: file(relativePath: { eq: "book_tafsir_almuyassar.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid

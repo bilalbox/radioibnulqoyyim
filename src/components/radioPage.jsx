@@ -77,7 +77,7 @@ export default function AudioPage() {
   const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
 
   const LoadableAudioPlayer = Loadable({
-    loader: () => import('../components/audioPlayer'),
+    loader: () => import('./audioPlayer'),
     loading() {
       return <div>Loading...</div>
     },
