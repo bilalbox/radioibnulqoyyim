@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import {
   Box,
+  Button,
   Collapse,
   IconButton,
   Paper,
@@ -16,8 +17,11 @@ import {
   CloudDownload,
   KeyboardArrowUp,
   KeyboardArrowDown,
+  Archive,
 } from '@material-ui/icons'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
+
+import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -57,6 +61,7 @@ const Row = ({ seriId }) => {
     title: '',
     description: '',
     files: [],
+    zipUrl: '',
   })
   const [open, setOpen] = React.useState(false)
   React.useEffect(() => {
@@ -65,6 +70,7 @@ const Row = ({ seriId }) => {
       .then(function (response) {
         const title = response.data.metadata.title
         const description = response.data.metadata.description
+        const zipUrl = `https://archive.org/compress/${seriId}/formats=VBR%20MP3&file=/${seriId}.zip`
         const files = response.data.files
           .filter((f) => f.format === 'VBR MP3')
           .map((ff) => ({
@@ -73,12 +79,11 @@ const Row = ({ seriId }) => {
             pemateri: ff.artist,
             seri: ff.album,
           }))
-        const category = files[0].seri
         setSeriData({
           title,
           description,
-          category,
           files,
+          zipUrl,
         })
       })
       .catch(function (error) {
@@ -112,14 +117,20 @@ const Row = ({ seriId }) => {
           colSpan={6}
         >
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
+            <Box
+              margin={1}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <div dangerouslySetInnerHTML={{ __html: seriData.description }} />
               <Table size="small" aria-label="table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>EPISODE</StyledTableCell>
-                    <StyledTableCell align="right">PEMATERI</StyledTableCell>
-                    <StyledTableCell align="right">UNNDUH</StyledTableCell>
+                    <StyledTableCell align="right">UNDUH</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -129,17 +140,26 @@ const Row = ({ seriId }) => {
                         {file.judul}
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                        {file.pemateri}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        <a href={file.url}>
-                          <CloudDownload className={classes.link} />
-                        </a>
+                        <IconButton color="primary" href={file.url}>
+                          <CloudDownload />
+                        </IconButton>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
+              <Button
+                variant="contained"
+                color="primary"
+                endIcon={<Archive />}
+                href={seriData.zipUrl}
+                style={{
+                  maxWidth: '200px',
+                  margin: '20px',
+                }}
+              >
+                Unduh Semua
+              </Button>
             </Box>
           </Collapse>
         </TableCell>
@@ -149,17 +169,7 @@ const Row = ({ seriId }) => {
 }
 
 function seriTable() {
-  const seriList = [
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-    '10_20201128_202011',
-  ]
+  const seriList = cfg.archiveDotOrgItems
 
   return (
     <TableContainer component={Paper}>
