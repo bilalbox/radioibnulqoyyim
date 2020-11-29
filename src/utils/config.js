@@ -2,7 +2,6 @@ import Logo from '../images/logo.svg'
 
 const cfg = {
   archiveDotOrgItems: [
-    '10_20201128_202011',
     'tujuh_tingkatan_wajib',
   ],
   urls: {
