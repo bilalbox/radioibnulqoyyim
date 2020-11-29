@@ -55,7 +55,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow)
 
-const Row = ({ seriId }) => {
+const Row = ({ itemId, category }) => {
   const classes = useStyles()
   const [seriData, setSeriData] = React.useState({
     title: '',
@@ -66,17 +66,17 @@ const Row = ({ seriId }) => {
   const [open, setOpen] = React.useState(false)
   React.useEffect(() => {
     axios
-      .get(`https://archive.org/metadata/${seriId}`)
+      .get(`https://archive.org/metadata/${itemId}`)
       .then(function (response) {
         const title = response.data.metadata.title
         const description = response.data.metadata.description
-        const zipUrl = `https://archive.org/compress/${seriId}/formats=VBR%20MP3&file=/${seriId}.zip`
+        const zipUrl = `https://archive.org/compress/${itemId}/formats=VBR%20MP3&file=/${itemId}.zip`
         const files = response.data.files
           .filter((f) => f.format === 'VBR MP3')
           .map((ff) => ({
             judul: ff.title,
-            url: `https://archive.org/download/${seriId}/${ff.name}`,
-            pemateri: ff.artist,
+            url: `https://archive.org/download/${itemId}/${ff.name}`,
+            pemateri: ff.creator,
             seri: ff.album,
           }))
         setSeriData({
@@ -89,7 +89,7 @@ const Row = ({ seriId }) => {
       .catch(function (error) {
         console.log(error)
       })
-  }, [seriId])
+  }, [itemId])
 
   return (
     <>
@@ -106,7 +106,9 @@ const Row = ({ seriId }) => {
         <TableCell component="th" scope="row">
           {seriData.title}
         </TableCell>
-        <TableCell align="right">{seriData.category}</TableCell>
+        <TableCell component="th" scope="row">
+          {category}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell
@@ -133,6 +135,7 @@ const Row = ({ seriId }) => {
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>EPISODE</StyledTableCell>
+                    <StyledTableCell>PEMATERI</StyledTableCell>
                     <StyledTableCell align="right">UNDUH</StyledTableCell>
                   </TableRow>
                 </TableHead>
@@ -142,6 +145,7 @@ const Row = ({ seriId }) => {
                       <StyledTableCell component="th" scope="row">
                         {file.judul}
                       </StyledTableCell>
+                      <StyledTableCell>{file.pemateri}</StyledTableCell>
                       <StyledTableCell align="right">
                         <IconButton color="primary" href={file.url}>
                           <CloudDownload />
@@ -181,12 +185,12 @@ function seriTable() {
           <TableRow>
             <StyledTableCell />
             <StyledTableCell>SERI</StyledTableCell>
-            <StyledTableCell align="right">KATEGORI</StyledTableCell>
+            <StyledTableCell>KATEGORI</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {seriList.map((seriId) => (
-            <Row key={seriId} seriId={seriId} />
+          {seriList.map(({ itemId, category }) => (
+            <Row key={itemId} itemId={itemId} category={category} />
           ))}
         </TableBody>
       </Table>
