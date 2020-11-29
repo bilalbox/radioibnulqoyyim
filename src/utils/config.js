@@ -14,19 +14,19 @@ const cfg = {
       {
         title: 'RADIO IQ - SALURAN 1',
         audioInfo:
-          'https://yacdn.org/proxy/https://ssg.streamingmurah.com:8286/stats?json=1',
+          '/stats-01',
         audioUrl: 'https://ssg.streamingmurah.com:8286/stream',
       },
       {
         title: 'RADIO IQ - SALURAN 2',
         audioInfo:
-          'https://yacdn.org/proxy/https://ssg.streamingmurah.com:8256/stats?json=1',
+          '/stats-02',
         audioUrl: 'https://ssg.streamingmurah.com:8256/stream',
       },
       {
         title: 'RADIO IQ - SALURAN 3',
         audioInfo:
-          'https://yacdn.org/proxy/https://ssg.streamingmurah.com:8126/stats?json=1',
+          '/stats-03',
         audioUrl: 'https://ssg.streamingmurah.com:8126/stream',
       },
     ],

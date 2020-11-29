@@ -125,7 +125,10 @@ const Row = ({ seriId }) => {
                 alignItems: 'center',
               }}
             >
-              <div dangerouslySetInnerHTML={{ __html: seriData.description }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: seriData.description }}
+                style={{ marginBottom: '20px' }}
+              />
               <Table size="small" aria-label="table">
                 <TableHead>
                   <TableRow>
