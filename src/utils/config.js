@@ -2,12 +2,15 @@ import Logo from '../images/logo.svg'
 
 const cfg = {
   archiveDotOrgItems: [
-    'tujuh_tingkatan_wajib',
+    { itemId: 'kiat_kiat_hidup_bahagia', category: 'PELAJARAN_UMUM' },
+    { itemId: 'tujuh_tingkatan_wajib', category: 'PELAJARAN_UMUM' },
+    { itemId: 'al_urjuzah_al_miiyyah', category: 'SIRAH' },
+    { itemId: 'dauroh_imam_syafii_ke9', category: 'DAUROH' },
   ],
   urls: {
     email: 'mailto:salafybpp@gmail.com',
     mainSite: 'https://raihsurga.com',
-    podcast: 'https://anchor.fm/radioibnulqoyyim',
+    archiveDotOrg: 'https://archive.org/details/@radioibnulqoyyim',
     logo: Logo,
     radio: [
       {
@@ -29,7 +32,6 @@ const cfg = {
         audioUrl: 'https://ssg.streamingmurah.com:8126/stream',
       },
     ],
-    rss: 'https://anchor.fm/s/3770c8bc/podcast/rss',
     telegram: 'https://t.me/AudioThalabIlmuSyar_i',
     youtube: 'https://www.youtube.com/raihsurga',
   },
