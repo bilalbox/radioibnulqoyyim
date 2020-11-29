@@ -1,0 +1,20 @@
+[[redirects]]
+  from = "/stats-01"
+  to = "https://ssg.streamingmurah.com:8286/stats?json=1"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {access-control-allow-origin = "*"}
+
+[[redirects]]
+  from = "/stats-02"
+  to = "https://ssg.streamingmurah.com:8256/stats?json=1"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {access-control-allow-origin = "*"}
+
+[[redirects]]
+  from = "/stats-03"
+  to = "https://ssg.streamingmurah.com:8126/stats?json=1"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {access-control-allow-origin = "*"}

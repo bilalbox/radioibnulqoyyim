@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import Index from '../components/radioPage'
+import Archive from '../components/archivePage'
 
 export default function IndexPage() {
   const {
@@ -22,7 +22,7 @@ export default function IndexPage() {
   return (
     <Layout>
       <SEO title={siteMetadata.title} />
-      <Index />
+      <Archive />
     </Layout>
   )
 }
