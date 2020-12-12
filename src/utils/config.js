@@ -2,8 +2,9 @@ import Logo from '../images/logo.svg'
 
 const cfg = {
   archiveDotOrgItems: [
-    { itemId: 'kiat_kiat_hidup_bahagia', category: 'PELAJARAN_UMUM' },
-    { itemId: 'tujuh_tingkatan_wajib', category: 'PELAJARAN_UMUM' },
+    { itemId: 'kiat_kiat_hidup_bahagia', category: 'PELAJARAN UMUM' },
+    { itemId: 'tujuh_tingkatan_wajib', category: 'PELAJARAN UMUM' },
+    { itemId: 'shohihul_adabul_mufrod', category: 'PELAJARAN UMUM' },
     { itemId: 'al_urjuzah_al_miiyyah', category: 'SIRAH' },
     { itemId: 'dauroh_imam_syafii_ke9', category: 'DAUROH' },
   ],
@@ -14,19 +15,19 @@ const cfg = {
     logo: Logo,
     radio: [
       {
-        title: 'RADIO IQ - SALURAN 1',
+        title: 'SALURAN 1',
         audioInfo:
           '/stats-01',
         audioUrl: 'https://ssg.streamingmurah.com:8286/stream',
       },
       {
-        title: 'RADIO IQ - SALURAN 2',
+        title: 'SALURAN 2',
         audioInfo:
           '/stats-02',
         audioUrl: 'https://ssg.streamingmurah.com:8256/stream',
       },
       {
-        title: 'RADIO IQ - SALURAN 3',
+        title: 'SALURAN 3',
         audioInfo:
           '/stats-03',
         audioUrl: 'https://ssg.streamingmurah.com:8126/stream',

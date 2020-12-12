@@ -3,12 +3,10 @@ import Marquee from 'react-double-marquee'
 import Loadable from 'react-loadable'
 import axios from 'axios'
 import {
-  Avatar,
   CardContent,
   CardMedia,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText,
   Typography,
   useMediaQuery,
@@ -38,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: '20vw',
     height: '20vw',
+    borderRadius: '11vw',
     '@media (max-width: 1300px)': {
       width: '30vw',
       height: '30vw',
@@ -131,7 +130,7 @@ export default function AudioPage() {
         <LoadableAudioPlayer audioSource={audioSource} />
       </div>
       <List dense>
-        {cfg.urls.radio.map((station) => {
+        {cfg.urls.radio.map((station, stationNumber) => {
           return (
             <ListItem
               key={station.title}
@@ -144,9 +143,6 @@ export default function AudioPage() {
                 setAudioInfo(station.audioInfo)
               }}
             >
-              <ListItemAvatar>
-                <Avatar alt="station image" src={cfg.urls.logo} />
-              </ListItemAvatar>
               <ListItemText id={station.title} primary={station.title} />
             </ListItem>
           )
