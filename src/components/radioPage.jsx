@@ -3,13 +3,9 @@ import Marquee from 'react-double-marquee'
 import Loadable from 'react-loadable'
 import axios from 'axios'
 import {
-  Avatar,
+  Button,
   CardContent,
   CardMedia,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
   Typography,
   useMediaQuery,
 } from '@material-ui/core'
@@ -18,6 +14,24 @@ import { makeStyles, styled } from '@material-ui/core/styles'
 import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
+  cover: {
+    width: '20vw',
+    height: '20vw',
+    borderRadius: '10vw',
+    '@media (max-width: 1300px)': {
+      width: '30vw',
+      height: '30vw',
+      borderRadius: '15vw',
+    },
+    '@media (max-width: 600px)': {
+      width: '60vw',
+      height: '60vw',
+    },
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -30,28 +44,6 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 600px)': {
       width: '100vw',
     },
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cover: {
-    width: '20vw',
-    height: '20vw',
-    '@media (max-width: 1300px)': {
-      width: '30vw',
-      height: '30vw',
-    },
-    '@media (max-width: 600px)': {
-      width: '60vw',
-      height: '60vw',
-    },
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: 'auto',
-    alignItems: 'center',
   },
 }))
 
@@ -74,8 +66,7 @@ export default function AudioPage() {
   )
   const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
   const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
-  const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
-
+  const [currentStation, setCurrentStation] = React.useState(1)
   const LoadableAudioPlayer = Loadable({
     loader: () => import('./audioPlayer'),
     loading() {
@@ -102,7 +93,9 @@ export default function AudioPage() {
   return (
     <Container>
       <div className={classes.root}>
-        {matches && <CardMedia className={classes.cover} image={audioImage} />}
+        {matches && (
+          <CardMedia className={classes.cover} image={cfg.urls.logo} />
+        )}
         <CardContent
           style={{
             width: '100%',
@@ -125,33 +118,52 @@ export default function AudioPage() {
             align="center"
             component="p"
           >
-            Pendengar: {nowPlayingStats.currentlisteners}
+            PENDENGAR: {nowPlayingStats.currentlisteners}
           </Typography>
         </CardContent>
         <LoadableAudioPlayer audioSource={audioSource} />
       </div>
-      <List dense>
-        {cfg.urls.radio.map((station) => {
-          return (
-            <ListItem
-              key={station.title}
-              selected={station.audioUrl === audioSource}
-              button
-              onClick={() => {
-                setAudioSource(station.audioUrl)
-                setAudioTitle(station.title)
-                setAudioImage(cfg.urls.logo)
-                setAudioInfo(station.audioInfo)
-              }}
-            >
-              <ListItemAvatar>
-                <Avatar alt="station image" src={cfg.urls.logo} />
-              </ListItemAvatar>
-              <ListItemText id={station.title} primary={station.title} />
-            </ListItem>
-          )
-        })}
-      </List>
+      <div className={classes.root}>
+        <Button
+          variant="contained"
+          color={currentStation === 1 ? 'primary' : 'secondary'}
+          style={{ marginTop: 5 }}
+          onClick={() => {
+            setCurrentStation(1)
+            setAudioSource(cfg.urls.radio[0].audioUrl)
+            setAudioTitle(cfg.urls.radio[0].title)
+            setAudioInfo(cfg.urls.radio[0].audioInfo)
+          }}
+        >
+          SALURAN 1
+        </Button>
+        <Button
+          variant="contained"
+          color={currentStation === 2 ? 'primary' : 'secondary'}
+          style={{ marginTop: 5 }}
+          onClick={() => {
+            setCurrentStation(2)
+            setAudioSource(cfg.urls.radio[1].audioUrl)
+            setAudioTitle(cfg.urls.radio[1].title)
+            setAudioInfo(cfg.urls.radio[1].audioInfo)
+          }}
+        >
+          SALURAN 2
+        </Button>
+        <Button
+          variant="contained"
+          color={currentStation === 3 ? 'primary' : 'secondary'}
+          style={{ marginTop: 5 }}
+          onClick={() => {
+            setCurrentStation(3)
+            setAudioSource(cfg.urls.radio[2].audioUrl)
+            setAudioTitle(cfg.urls.radio[2].title)
+            setAudioInfo(cfg.urls.radio[2].audioInfo)
+          }}
+        >
+          SALURAN 3
+        </Button>
+      </div>
     </Container>
   )
 }

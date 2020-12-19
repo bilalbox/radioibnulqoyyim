@@ -7,6 +7,9 @@ export const lightTheme = responsiveFontSizes(
       primary: {
         main: '#da241c',
       },
+      secondary: {
+        main: '#2c3d4e'
+      },
       background: {
         default: '#fafafa',
         paper: '#fcfcfc'
@@ -21,6 +24,9 @@ export const darkTheme = responsiveFontSizes(
       type: 'dark',
       primary: {
         main: '#2196f3',
+      },
+      secondary: {
+        main: '#ddf8e8'
       },
       background: {
         default: '#1a1a1a',
