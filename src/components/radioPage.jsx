@@ -5,9 +5,7 @@ import axios from 'axios'
 import {
   CardContent,
   CardMedia,
-  List,
-  ListItem,
-  ListItemText,
+  Fab,
   Typography,
   useMediaQuery,
 } from '@material-ui/core'
@@ -36,10 +34,11 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: '20vw',
     height: '20vw',
-    borderRadius: '11vw',
+    borderRadius: '10vw',
     '@media (max-width: 1300px)': {
       width: '30vw',
       height: '30vw',
+      borderRadius: '15vw',
     },
     '@media (max-width: 600px)': {
       width: '60vw',
@@ -73,7 +72,6 @@ export default function AudioPage() {
   )
   const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
   const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
-  const [audioImage, setAudioImage] = React.useState(cfg.urls.logo)
 
   const LoadableAudioPlayer = Loadable({
     loader: () => import('./audioPlayer'),
@@ -101,7 +99,9 @@ export default function AudioPage() {
   return (
     <Container>
       <div className={classes.root}>
-        {matches && <CardMedia className={classes.cover} image={audioImage} />}
+        {matches && (
+          <CardMedia className={classes.cover} image={cfg.urls.logo} />
+        )}
         <CardContent
           style={{
             width: '100%',
@@ -124,30 +124,55 @@ export default function AudioPage() {
             align="center"
             component="p"
           >
-            Pendengar: {nowPlayingStats.currentlisteners}
+            PENDENGAR: {nowPlayingStats.currentlisteners}
           </Typography>
         </CardContent>
         <LoadableAudioPlayer audioSource={audioSource} />
       </div>
-      <List dense>
-        {cfg.urls.radio.map((station, stationNumber) => {
-          return (
-            <ListItem
-              key={station.title}
-              selected={station.audioUrl === audioSource}
-              button
-              onClick={() => {
-                setAudioSource(station.audioUrl)
-                setAudioTitle(station.title)
-                setAudioImage(cfg.urls.logo)
-                setAudioInfo(station.audioInfo)
-              }}
-            >
-              <ListItemText id={station.title} primary={station.title} />
-            </ListItem>
-          )
-        })}
-      </List>
+      <div>
+        <Typography variant="h6" component="span">
+          SALURAN:
+        </Typography>
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="Saluran 1"
+          style={{ marginInline: 2 }}
+          onClick={() => {
+            setAudioSource(cfg.urls.radio[0].audioUrl)
+            setAudioTitle(cfg.urls.radio[0].title)
+            setAudioInfo(cfg.urls.radio[0].audioInfo)
+          }}
+        >
+          <Typography variant="h6">1</Typography>
+        </Fab>
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="Saluran 2"
+          style={{ marginInline: 2 }}
+          onClick={() => {
+            setAudioSource(cfg.urls.radio[1].audioUrl)
+            setAudioTitle(cfg.urls.radio[1].title)
+            setAudioInfo(cfg.urls.radio[1].audioInfo)
+          }}
+        >
+          <Typography variant="h6">2</Typography>
+        </Fab>
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="Saluran 3"
+          style={{ marginInline: 2 }}
+          onClick={() => {
+            setAudioSource(cfg.urls.radio[2].audioUrl)
+            setAudioTitle(cfg.urls.radio[2].title)
+            setAudioInfo(cfg.urls.radio[2].audioInfo)
+          }}
+        >
+          <Typography variant="h6">3</Typography>
+        </Fab>
+      </div>
     </Container>
   )
 }
