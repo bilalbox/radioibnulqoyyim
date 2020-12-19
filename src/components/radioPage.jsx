@@ -3,9 +3,9 @@ import Marquee from 'react-double-marquee'
 import Loadable from 'react-loadable'
 import axios from 'axios'
 import {
+  Button,
   CardContent,
   CardMedia,
-  Fab,
   Typography,
   useMediaQuery,
 } from '@material-ui/core'
@@ -14,23 +14,6 @@ import { makeStyles, styled } from '@material-ui/core/styles'
 import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '20vw',
-    backgroundColor: theme.palette.background.default,
-    '@media (max-width: 1300px)': {
-      width: '30vw',
-    },
-    '@media (max-width: 600px)': {
-      width: '100vw',
-    },
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
   cover: {
     width: '20vw',
     height: '20vw',
@@ -45,11 +28,22 @@ const useStyles = makeStyles((theme) => ({
       height: '60vw',
     },
   },
-  content: {
+  details: {
     display: 'flex',
     flexDirection: 'column',
-    height: 'auto',
+  },
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
+    width: '20vw',
+    backgroundColor: theme.palette.background.default,
+    '@media (max-width: 1300px)': {
+      width: '30vw',
+    },
+    '@media (max-width: 600px)': {
+      width: '100vw',
+    },
   },
 }))
 
@@ -72,7 +66,7 @@ export default function AudioPage() {
   )
   const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
   const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
-
+  const [currentStation, setCurrentStation] = React.useState(1)
   const LoadableAudioPlayer = Loadable({
     loader: () => import('./audioPlayer'),
     loading() {
@@ -129,49 +123,46 @@ export default function AudioPage() {
         </CardContent>
         <LoadableAudioPlayer audioSource={audioSource} />
       </div>
-      <div>
-        <Typography variant="h6" component="span">
-          SALURAN:
-        </Typography>
-        <Fab
-          size="small"
-          color="primary"
-          aria-label="Saluran 1"
-          style={{ marginInline: 2 }}
+      <div className={classes.root}>
+        <Button
+          variant="contained"
+          color={currentStation === 1 ? 'primary' : 'secondary'}
+          style={{ marginTop: 5 }}
           onClick={() => {
+            setCurrentStation(1)
             setAudioSource(cfg.urls.radio[0].audioUrl)
             setAudioTitle(cfg.urls.radio[0].title)
             setAudioInfo(cfg.urls.radio[0].audioInfo)
           }}
         >
-          <Typography variant="h6">1</Typography>
-        </Fab>
-        <Fab
-          size="small"
-          color="primary"
-          aria-label="Saluran 2"
-          style={{ marginInline: 2 }}
+          SALURAN 1
+        </Button>
+        <Button
+          variant="contained"
+          color={currentStation === 2 ? 'primary' : 'secondary'}
+          style={{ marginTop: 5 }}
           onClick={() => {
+            setCurrentStation(2)
             setAudioSource(cfg.urls.radio[1].audioUrl)
             setAudioTitle(cfg.urls.radio[1].title)
             setAudioInfo(cfg.urls.radio[1].audioInfo)
           }}
         >
-          <Typography variant="h6">2</Typography>
-        </Fab>
-        <Fab
-          size="small"
-          color="primary"
-          aria-label="Saluran 3"
-          style={{ marginInline: 2 }}
+          SALURAN 2
+        </Button>
+        <Button
+          variant="contained"
+          color={currentStation === 3 ? 'primary' : 'secondary'}
+          style={{ marginTop: 5 }}
           onClick={() => {
+            setCurrentStation(3)
             setAudioSource(cfg.urls.radio[2].audioUrl)
             setAudioTitle(cfg.urls.radio[2].title)
             setAudioInfo(cfg.urls.radio[2].audioInfo)
           }}
         >
-          <Typography variant="h6">3</Typography>
-        </Fab>
+          SALURAN 3
+        </Button>
       </div>
     </Container>
   )
