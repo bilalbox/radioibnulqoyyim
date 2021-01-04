@@ -61,14 +61,16 @@ export default function Schedule() {
   }
   const images = useStaticQuery(graphql`
     query {
-      daurohLogo: file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
+      daurohLogo: file(
+        relativePath: { eq: "menjaga_perasaan_sesama_muslim.jpg" }
+      ) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      AHAD: file(relativePath: { eq: "kiat-kiat-hidup-bahagia.jpg" }) {
+      AHAD: file(relativePath: { eq: "menjaga_perasaan_sesama_muslim.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid

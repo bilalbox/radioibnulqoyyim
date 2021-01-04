@@ -61,9 +61,9 @@ const cfg = {
       kajian: [
         {
           waktu: "MAGHRIB (MALAM SENIN)",
-          buku: "KIAT-KIAT HIDUP BAHAGIA",
-          url: "https://archive.org/download/waq21887/21887.pdf",
-          penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
+          buku: "MENAJAGA PERASAAN SESAMA MUSLIM",
+          url: "",
+          penulis: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
           pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         }
       ]
