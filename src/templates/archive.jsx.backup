@@ -13,12 +13,16 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core'
-import { KeyboardArrowUp, KeyboardArrowDown, Archive } from '@material-ui/icons'
+import {
+  CloudDownload,
+  KeyboardArrowUp,
+  KeyboardArrowDown,
+  Archive,
+} from '@material-ui/icons'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import AudioPlayer from '../components/audioPlayer'
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -55,6 +59,10 @@ const StyledTableRow = withStyles((theme) => ({
 const Row = ({ seriData }) => {
   const classes = useStyles()
   const [openRow, setOpenRow] = React.useState(false)
+  const [expandedAccordion, setExpandedAccordion] = React.useState(false)
+  const handleAccordionChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
   return (
     <>
       <TableRow className={classes.root}>
@@ -100,21 +108,20 @@ const Row = ({ seriData }) => {
                   <TableRow>
                     <StyledTableCell>EPISODE</StyledTableCell>
                     <StyledTableCell>PEMATERI</StyledTableCell>
-                    <StyledTableCell align="right">PLAYER</StyledTableCell>
+                    <StyledTableCell align="right">UNDUH</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {seriData.files.map(({ judul, pemateri, url }) => (
-                    <StyledTableRow key={judul}>
+                  {seriData.files.map((file) => (
+                    <StyledTableRow key={file.judul}>
                       <StyledTableCell component="th" scope="row">
-                        {judul}
+                        {file.judul}
                       </StyledTableCell>
-                      <StyledTableCell>{pemateri}</StyledTableCell>
+                      <StyledTableCell>{file.pemateri}</StyledTableCell>
                       <StyledTableCell align="right">
-                        {/* <IconButton color="primary" href={url}>
+                        <IconButton color="primary" href={file.url}>
                           <CloudDownload />
-                        </IconButton> */}
-                        <AudioPlayer audioSource={url} />
+                        </IconButton>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

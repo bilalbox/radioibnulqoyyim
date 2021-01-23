@@ -1,6 +1,5 @@
 import React from 'react'
 import Marquee from 'react-double-marquee'
-import Loadable from 'react-loadable'
 import axios from 'axios'
 import {
   Button,
@@ -11,6 +10,7 @@ import {
 } from '@material-ui/core'
 import { makeStyles, styled } from '@material-ui/core/styles'
 
+import AudioPlayer from './audioPlayer'
 import cfg from '../utils/config'
 
 const useStyles = makeStyles((theme) => ({
@@ -67,12 +67,6 @@ export default function AudioPage() {
   const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
   const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
   const [currentStation, setCurrentStation] = React.useState(1)
-  const LoadableAudioPlayer = Loadable({
-    loader: () => import('./audioPlayer'),
-    loading() {
-      return <div>Loading...</div>
-    },
-  })
 
   React.useEffect(() => {
     if (audioInfo)
@@ -121,7 +115,7 @@ export default function AudioPage() {
             PENDENGAR: {nowPlayingStats.currentlisteners}
           </Typography>
         </CardContent>
-        <LoadableAudioPlayer audioSource={audioSource} />
+        <AudioPlayer audioSource={audioSource} />
       </div>
       <div className={classes.root}>
         <Button
