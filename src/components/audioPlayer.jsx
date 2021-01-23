@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function AudioPlayer({ audioSource }) {
+export default function AudioPlayer({ src }) {
   return (
     <div>
       {/* eslint-disable-next-line */}
-      <audio src={audioSource} controls autoPlay={false} preload="metadata" />
+      <audio src={src} controls autoPlay={false} preload="metadata" />
     </div>
   )
 }

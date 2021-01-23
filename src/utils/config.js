@@ -1,13 +1,6 @@
 import Logo from '../images/logo.svg'
 
 const cfg = {
-  archiveDotOrgItems: [
-    { itemId: 'kiat_kiat_hidup_bahagia', category: 'PELAJARAN UMUM' },
-    { itemId: 'tujuh_tingkatan_wajib', category: 'PELAJARAN UMUM' },
-    { itemId: 'shohihul_adabul_mufrod', category: 'PELAJARAN UMUM' },
-    { itemId: 'al_urjuzah_al_miiyyah', category: 'SIRAH' },
-    { itemId: 'dauroh_imam_syafii_ke9', category: 'DAUROH' },
-  ],
   urls: {
     email: 'mailto:salafybpp@gmail.com',
     mainSite: 'https://raihsurga.com',
@@ -51,7 +44,7 @@ const cfg = {
           waktu: "ASHAR",
           buku: "HIBURAN HATI ORANG-ORANG BAIK, PENYEJUK HATI HAMBA-HAMBA PILIHAN PENJELASAN TERHADAP HADITS-HADITS PENUH MAKNA",
           url: "https://archive.org/download/FP132128/132128.pdf",
-          penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
+          penulis: "AL-IMAM ABDURROHMAN BIN NASR AS-SA'DI رحمه الله",
           pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         },
       ]
@@ -61,9 +54,9 @@ const cfg = {
       kajian: [
         {
           waktu: "MAGHRIB (MALAM SENIN)",
-          buku: "KIAT-KIAT HIDUP BAHAGIA",
-          url: "https://archive.org/download/waq21887/21887.pdf",
-          penulis: "AL-IMAM ABDURRAHMAN BIN NASR AS-SA'DI رحمه الله",
+          buku: "MENAJAGA PERASAAN SESAMA MUSLIM",
+          url: "",
+          penulis: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
           pemateri: "SY. DR. ABU MALIK ALI AL MASY'ARI حفظه الله",
         }
       ]
@@ -73,9 +66,9 @@ const cfg = {
       kajian: [
         {
           waktu: "MAGHRIB (MALAM SELASA)",
-          buku: "SHAHIH BUKHARI",
+          buku: "SHOHIH BUKHARI",
           url: "https://archive.org/download/waq79565/79565.pdf",
-          penulis: "AL-IMAM MOHAMMED BIN ISMA'IL AL-BUKHARI رحمه الله",
+          penulis: "AL-IMAM MOHAMMAD BIN ISMA'IL AL-BUKHORI رحمه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
         }
       ]
@@ -87,7 +80,7 @@ const cfg = {
           waktu: "MAGHRIB (MALAM RABU)",
           buku: "FATHUL MAJID - SYARH KITAB AT-TAWHID",
           url: "https://archive.org/download/waq6559/6559.pdf",
-          penulis: "AL-IMAM ABDURRAHMAN BIN HASSAN BIN MOHAMMED BIN ABDULWAHHAB رحمه الله",
+          penulis: "AL-IMAM ABDURROHMAN BIN HASSAN BIN MOHAMMAD BIN ABDULWAHHAB رحمه الله",
           pemateri: "UST. ABU AHMAD MUALLIM حفظه الله"
         }
       ]
@@ -97,7 +90,7 @@ const cfg = {
       kajian: [
         {
           waktu: "MAGHRIB (MALAM KAMIS)",
-          buku: "RIYADHUS SHALIHIN",
+          buku: "RIYADHUS SHOLIHIN",
           url: "https://archive.org/download/FP158170/158170.pdf",
           penulis: "AL-IMAM AN-NAWAWI رحمه الله",
           pemateri: "UST. ABU AHMAD MUALLIM حفظه الله"
@@ -123,7 +116,7 @@ const cfg = {
           waktu: "MAGHRIB (MALAM SABTU)",
           buku: "HUKUM-HUKUM SEPUTAR FIQH ISLAM",
           url: "https://archive.org/download/FP145220/145220.pdf",
-          penulis: "AL-IMAM SHIHAB UD-DIN IBN HAJAR AL-ʿASQOLANI رحمه الله",
+          penulis: "AL-IMAM SYIHAB UD-DIN IBN HAJAR AL-ʿASQOLANI رحمه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
         }
       ]
@@ -135,7 +128,7 @@ const cfg = {
           waktu: "MAGHRIB (MALAM AHAD)",
           buku: "SHOHIH AL ADAB IL MUFROD",
           url: "https://archive.org/download/FP23906/23906.pdf",
-          penulis: "AL-IMAM MOHAMMED BIN ISMA'IL AL-BUKHARI رحمه الله",
+          penulis: "AL-IMAM MOHAMMAD BIN ISMA'IL AL-BUKHORI رحمه الله",
           pemateri: "UST. ABU MUAWIYAH ASKARY حفظه الله"
         }
       ]
