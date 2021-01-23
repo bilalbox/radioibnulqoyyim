@@ -9,9 +9,16 @@ import {
   useMediaQuery,
 } from '@material-ui/core'
 import { makeStyles, styled } from '@material-ui/core/styles'
+import Loadable from 'react-loadable'
 
-import AudioPlayer from './audioPlayer'
 import cfg from '../utils/config'
+
+const LoadableAudioPlayer = Loadable({
+  loader: () => import('./audioPlayer'),
+  loading() {
+    return <div>Loading...</div>
+  },
+})
 
 const useStyles = makeStyles((theme) => ({
   cover: {
@@ -115,7 +122,7 @@ export default function AudioPage() {
             PENDENGAR: {nowPlayingStats.currentlisteners}
           </Typography>
         </CardContent>
-        <AudioPlayer audioSource={audioSource} />
+        <LoadableAudioPlayer src={audioSource} />
       </div>
       <div className={classes.root}>
         <Button

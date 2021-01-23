@@ -13,12 +13,16 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core'
-import { KeyboardArrowUp, KeyboardArrowDown, Archive } from '@material-ui/icons'
+import {
+  Archive,
+  CloudDownload,
+  KeyboardArrowUp,
+  KeyboardArrowDown,
+} from '@material-ui/icons'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import AudioPlayer from '../components/audioPlayer'
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -100,7 +104,7 @@ const Row = ({ seriData }) => {
                   <TableRow>
                     <StyledTableCell>EPISODE</StyledTableCell>
                     <StyledTableCell>PEMATERI</StyledTableCell>
-                    <StyledTableCell align="right">PLAYER</StyledTableCell>
+                    <StyledTableCell align="right">UNDUH</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -111,10 +115,9 @@ const Row = ({ seriData }) => {
                       </StyledTableCell>
                       <StyledTableCell>{pemateri}</StyledTableCell>
                       <StyledTableCell align="right">
-                        {/* <IconButton color="primary" href={url}>
+                        <IconButton color="primary" href={url}>
                           <CloudDownload />
-                        </IconButton> */}
-                        <AudioPlayer audioSource={url} />
+                        </IconButton>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
