@@ -2,9 +2,11 @@ import React from 'react'
 import Marquee from 'react-double-marquee'
 import axios from 'axios'
 import {
+  Badge,
   Button,
   CardContent,
   CardMedia,
+  Chip,
   Typography,
   useMediaQuery,
 } from '@material-ui/core'
@@ -80,13 +82,18 @@ export default function AudioPage() {
       axios
         .get(audioInfo, { timeout: 15000, origin: 'anonymous' })
         .then((res) => {
-          setNowPlayingStats(res.data)
+          setNowPlayingStats({
+            songtitle: res.data.now_playing.song.title,
+            currentlisteners: res.data.listeners.current,
+            live: res.data.live.is_live,
+          })
         })
         .catch((error) => {
           console.error('Error: ', error)
           setNowPlayingStats({
             songtitle: '',
             currentlisteners: 0,
+            live: false,
           })
         })
   }, [audioInfo])
@@ -119,10 +126,18 @@ export default function AudioPage() {
             align="center"
             component="p"
           >
-            PENDENGAR: {nowPlayingStats.currentlisteners}
+            <Chip label={`PENDENGAR: ${nowPlayingStats.currentlisteners}`}>
+              {' '}
+            </Chip>
           </Typography>
         </CardContent>
-        <LoadableAudioPlayer src={audioSource} />
+        {nowPlayingStats.live ? (
+          <Badge badgeContent={'LIVE'} color="primary">
+            <LoadableAudioPlayer src={audioSource} />
+          </Badge>
+        ) : (
+          <LoadableAudioPlayer src={audioSource} />
+        )}
       </div>
       <div className={classes.root}>
         <Button
@@ -136,7 +151,7 @@ export default function AudioPage() {
             setAudioInfo(cfg.urls.radio[0].audioInfo)
           }}
         >
-          SALURAN 1
+          {cfg.urls.radio[0].title}
         </Button>
         <Button
           variant="contained"
@@ -149,20 +164,7 @@ export default function AudioPage() {
             setAudioInfo(cfg.urls.radio[1].audioInfo)
           }}
         >
-          SALURAN 2
-        </Button>
-        <Button
-          variant="contained"
-          color={currentStation === 3 ? 'primary' : 'secondary'}
-          style={{ marginTop: 5 }}
-          onClick={() => {
-            setCurrentStation(3)
-            setAudioSource(cfg.urls.radio[2].audioUrl)
-            setAudioTitle(cfg.urls.radio[2].title)
-            setAudioInfo(cfg.urls.radio[2].audioInfo)
-          }}
-        >
-          SALURAN 3
+          {cfg.urls.radio[1].title}
         </Button>
       </div>
     </Container>
