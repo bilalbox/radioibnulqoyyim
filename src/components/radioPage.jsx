@@ -3,7 +3,6 @@ import Marquee from 'react-double-marquee'
 import axios from 'axios'
 import {
   Badge,
-  Button,
   CardContent,
   CardMedia,
   Chip,
@@ -75,7 +74,6 @@ export default function AudioPage() {
   )
   const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
   const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
-  const [currentStation, setCurrentStation] = React.useState(1)
 
   React.useEffect(() => {
     if (audioInfo)
@@ -138,34 +136,6 @@ export default function AudioPage() {
         ) : (
           <LoadableAudioPlayer src={audioSource} />
         )}
-      </div>
-      <div className={classes.root}>
-        <Button
-          variant="contained"
-          color={currentStation === 1 ? 'primary' : 'secondary'}
-          style={{ marginTop: 5 }}
-          onClick={() => {
-            setCurrentStation(1)
-            setAudioSource(cfg.urls.radio[0].audioUrl)
-            setAudioTitle(cfg.urls.radio[0].title)
-            setAudioInfo(cfg.urls.radio[0].audioInfo)
-          }}
-        >
-          {cfg.urls.radio[0].title}
-        </Button>
-        <Button
-          variant="contained"
-          color={currentStation === 2 ? 'primary' : 'secondary'}
-          style={{ marginTop: 5 }}
-          onClick={() => {
-            setCurrentStation(2)
-            setAudioSource(cfg.urls.radio[1].audioUrl)
-            setAudioTitle(cfg.urls.radio[1].title)
-            setAudioInfo(cfg.urls.radio[1].audioInfo)
-          }}
-        >
-          {cfg.urls.radio[1].title}
-        </Button>
       </div>
     </Container>
   )
