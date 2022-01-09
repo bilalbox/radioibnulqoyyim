@@ -1,5 +1,5 @@
 import React from 'react'
-import { Email, Info, YouTube, Archive, Telegram } from '@material-ui/icons'
+import { Email, Info, Telegram } from '@material-ui/icons'
 import { styled } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
@@ -57,12 +57,6 @@ export default function About() {
         <Links>
           <IconLink href={cfg.urls.mainSite}>
             <Info />
-          </IconLink>
-          <IconLink href={cfg.urls.youtube}>
-            <YouTube />
-          </IconLink>
-          <IconLink href={cfg.urls.archiveDotOrg}>
-            <Archive />
           </IconLink>
           <IconLink href={cfg.urls.telegram}>
             <Telegram />
