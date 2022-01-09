@@ -14,7 +14,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-svgr-svgo`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
@@ -24,7 +23,7 @@ module.exports = {
         short_name: `Radio IQ`,
         start_url: `/`,
         display: `minimal-ui`,
-        icon: `src/images/logo.svg`,
+        icon: `src/images/logo.png`,
         icon_options: { purpose: `any maskable` },
       },
     },

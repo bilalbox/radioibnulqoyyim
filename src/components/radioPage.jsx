@@ -1,6 +1,7 @@
 import React from 'react'
 import Marquee from 'react-double-marquee'
 import axios from 'axios'
+import useWebSocket, { ReadyState } from 'react-use-websocket'
 import {
   Badge,
   CardContent,
@@ -65,36 +66,25 @@ const Container = styled('div')({
 
 export default function AudioPage() {
   const classes = useStyles()
+  const audioSource = cfg.urls.radio[0].audioUrl
+  const stationTitle = cfg.urls.radio[0].title
+  const stationSocketUrl = cfg.urls.radio[0].wss
   const matches = useMediaQuery('(min-width: 600px)')
   const [nowPlayingStats, setNowPlayingStats] = React.useState({
     songtitle: 'LOADING...',
   })
-  const [audioSource, setAudioSource] = React.useState(
-    cfg.urls.radio[0].audioUrl
-  )
-  const [audioInfo, setAudioInfo] = React.useState(cfg.urls.radio[0].audioInfo)
-  const [audioTitle, setAudioTitle] = React.useState(cfg.urls.radio[0].title)
+  const { lastMessage } = useWebSocket(stationSocketUrl)
 
   React.useEffect(() => {
-    if (audioInfo)
-      axios
-        .get(audioInfo, { timeout: 15000, origin: 'anonymous' })
-        .then((res) => {
-          setNowPlayingStats({
-            songtitle: res.data.now_playing.song.title,
-            currentlisteners: res.data.listeners.current,
-            live: res.data.live.is_live,
-          })
-        })
-        .catch((error) => {
-          console.error('Error: ', error)
-          setNowPlayingStats({
-            songtitle: '',
-            currentlisteners: 0,
-            live: false,
-          })
-        })
-  }, [audioInfo])
+    if (lastMessage !== null) {
+      const data = JSON.parse(lastMessage.data)
+      setNowPlayingStats({
+        songtitle: data.now_playing.song.title,
+        currentlisteners: data.listeners.current,
+        live: data.live.is_live,
+      })
+    }
+  }, [lastMessage])
 
   return (
     <Container>
@@ -115,7 +105,7 @@ export default function AudioPage() {
             component="span"
           >
             <Marquee direction="left" delay={0} childMargin={50}>
-              {nowPlayingStats.songtitle || `${audioTitle} OFFLINE...`}
+              {nowPlayingStats.songtitle || `${stationTitle} OFFLINE...`}
             </Marquee>
           </Typography>
           <Typography
