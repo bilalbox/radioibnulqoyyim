@@ -1,9 +1,6 @@
 import React from 'react'
-import Marquee from 'react-double-marquee'
 import axios from 'axios'
-import useWebSocket, { ReadyState } from 'react-use-websocket'
 import {
-  Badge,
   CardContent,
   CardMedia,
   Chip,
@@ -12,7 +9,7 @@ import {
 } from '@material-ui/core'
 import { makeStyles, styled } from '@material-ui/core/styles'
 import Loadable from 'react-loadable'
-
+import useInterval from '../hooks/useInterval'
 import cfg from '../utils/config'
 
 const LoadableAudioPlayer = Loadable({
@@ -66,25 +63,41 @@ const Container = styled('div')({
 
 export default function AudioPage() {
   const classes = useStyles()
-  const audioSource = cfg.urls.radio[0].audioUrl
-  const stationTitle = cfg.urls.radio[0].title
-  const stationSocketUrl = cfg.urls.radio[0].wss
   const matches = useMediaQuery('(min-width: 600px)')
+  const delay = 10000 // milliseconds
+  const audioSource = cfg.urls.radio[0].audioUrl
+  const audioInfo = cfg.urls.radio[0].audioInfo
   const [nowPlayingStats, setNowPlayingStats] = React.useState({
     songtitle: 'LOADING...',
+    currentlisteners: 0,
+    live: false,
   })
-  const { lastMessage } = useWebSocket(stationSocketUrl)
 
   React.useEffect(() => {
-    if (lastMessage !== null) {
-      const data = JSON.parse(lastMessage.data)
-      setNowPlayingStats({
-        songtitle: data.now_playing.song.title,
-        currentlisteners: data.listeners.current,
-        live: data.live.is_live,
+    axios
+      .get(audioInfo, { timeout: 5000, origin: 'anonymous' })
+      .then((res) => {
+        setNowPlayingStats({
+          songtitle: res.data.now_playing.song.title,
+          currentlisteners: res.data.listeners.current,
+          live: res.data.live.is_live,
+        })
       })
-    }
-  }, [lastMessage])
+      .catch((error) => console.error('Error: ', error))
+  }, [audioInfo])
+
+  useInterval(() => {
+    axios
+      .get(audioInfo, { timeout: 15000, origin: 'anonymous' })
+      .then((res) => {
+        setNowPlayingStats({
+          songtitle: res.data.now_playing.song.title,
+          currentlisteners: res.data.listeners.current,
+          live: res.data.live.is_live,
+        })
+      })
+      .catch((error) => console.error('Error: ', error))
+  }, delay)
 
   return (
     <Container>
@@ -95,18 +108,14 @@ export default function AudioPage() {
         <CardContent
           style={{
             width: '100%',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
           }}
         >
           <Typography
             variant={matches ? 'h6' : 'body1'}
             align="center"
-            component="span"
+            component="p"
           >
-            <Marquee direction="left" delay={0} childMargin={50}>
-              {nowPlayingStats.songtitle || `${stationTitle} OFFLINE...`}
-            </Marquee>
+            {nowPlayingStats.songtitle}
           </Typography>
           <Typography
             variant="caption"
@@ -114,18 +123,11 @@ export default function AudioPage() {
             align="center"
             component="p"
           >
-            <Chip label={`PENDENGAR: ${nowPlayingStats.currentlisteners}`}>
-              {' '}
-            </Chip>
+            <Chip label={`PENDENGAR: ${nowPlayingStats.currentlisteners}`} />
+            {nowPlayingStats.live && <Chip label="LIVE" color="primary" />}
           </Typography>
         </CardContent>
-        {nowPlayingStats.live ? (
-          <Badge badgeContent={'LIVE'} color="primary">
-            <LoadableAudioPlayer src={audioSource} />
-          </Badge>
-        ) : (
-          <LoadableAudioPlayer src={audioSource} />
-        )}
+        <LoadableAudioPlayer src={audioSource} />
       </div>
     </Container>
   )

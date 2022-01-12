@@ -17,8 +17,6 @@ import {
   WbSunny as SunIcon,
   Brightness3 as MoonIcon,
   Radio as RadioIcon,
-  CalendarToday as CalendarIcon,
-  Archive as ArchiveIcon,
 } from '@material-ui/icons'
 import { styled, makeStyles } from '@material-ui/core/styles'
 
@@ -70,21 +68,6 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
             <Typography variant="h6"> Radio </Typography>
           </ListItem>
         </StyledLink>
-
-        <StyledLink id="schedule" className="menu-item" to="/schedule">
-          <ListItem button key="schedule">
-            <CalendarIcon style={{ marginRight: '10px' }} />{' '}
-            <Typography variant="h6"> Kajian Rutin </Typography>
-          </ListItem>
-        </StyledLink>
-
-        <StyledLink id="archive" className="menu-item" to="/archive">
-          <ListItem button key="archive">
-            <ArchiveIcon style={{ marginRight: '10px' }} />{' '}
-            <Typography variant="h6"> Arsip Kajian </Typography>
-          </ListItem>
-        </StyledLink>
-
         <StyledLink id="about" className="menu-item" to="/about">
           <ListItem button key="about">
             <InfoIcon style={{ marginRight: '10px' }} />{' '}
