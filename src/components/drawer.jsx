@@ -74,6 +74,12 @@ function ResponsiveDrawer({ window, darkMode, toggleDarkMode }) {
             <Typography variant="h6"> Tentang </Typography>
           </ListItem>
         </StyledLink>
+        <StyledLink id="privacy" className="menu-item" to="/privacy">
+          <ListItem button key="privacy">
+            <InfoIcon style={{ marginRight: '10px' }} />{' '}
+            <Typography variant="h6"> Tentang </Typography>
+          </ListItem>
+        </StyledLink>
       </List>
       <Divider />
       <List>
