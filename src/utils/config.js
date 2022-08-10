@@ -9,8 +9,8 @@ const cfg = {
       {
         title: 'RADIO IBNUL QOYYIM',
         audioInfo:
-          'https://azuracast.iqbpn.com/api/nowplaying/1',
-        audioUrl: 'https://azuracast.iqbpn.com/radio/8000/radio.mp3',
+          'https://www.radiomast.io/stream/d03f7d40-ec72-44d4-a301-3955e686091a/icecast/status-json.xsl',
+        audioUrl: 'https://streams.radiomast.io/d03f7d40-ec72-44d4-a301-3955e686091a',
         wss: 'wss://azuracast.iqbpn.com/api/live/nowplaying/radio_ibnul_qoyyim',
       },
       {

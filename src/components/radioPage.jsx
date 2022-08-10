@@ -78,9 +78,9 @@ export default function AudioPage() {
       .get(audioInfo, { timeout: 5000, origin: 'anonymous' })
       .then((res) => {
         setNowPlayingStats({
-          songtitle: res.data.now_playing.song.title,
-          currentlisteners: res.data.listeners.current,
-          live: res.data.live.is_live,
+          songtitle: res.data.icestats.source[0].title,
+          currentlisteners: res.data.icestats.source[0].listeners,
+          live: false,
         })
       })
       .catch((error) => console.error('Error: ', error))
@@ -91,9 +91,9 @@ export default function AudioPage() {
       .get(audioInfo, { timeout: 15000, origin: 'anonymous' })
       .then((res) => {
         setNowPlayingStats({
-          songtitle: res.data.now_playing.song.title,
-          currentlisteners: res.data.listeners.current,
-          live: res.data.live.is_live,
+          songtitle: res.data.icestats.source[0].title,
+          currentlisteners: res.data.icestats.source[0].listeners,
+          live: false,
         })
       })
       .catch((error) => console.error('Error: ', error))
